@@ -11,9 +11,9 @@ import { BoardAdminComponent } from './board-admin/board-admin.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'admin/login', component: LoginComponent },
-  { path: 'admin/register', component: RegisterComponent },
-  { path: 'admin/profile', component: ProfileComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'user', component: BoardUserComponent },
   { path: 'mod', component: BoardModeratorComponent },
   { path: 'admin', component: BoardAdminComponent }

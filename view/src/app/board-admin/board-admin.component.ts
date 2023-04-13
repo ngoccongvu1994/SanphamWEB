@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
 import { StorageService } from '../_services/storage.service';
-import { UserService } from '../_services/user.service';
 import { EventBusService } from '../_shared/event-bus.service';
-
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-board-admin',
   templateUrl: './board-admin.component.html',
@@ -22,7 +22,9 @@ export class BoardAdminComponent implements OnInit {
   constructor(
     private storageService: StorageService,
     private authService: AuthService,
-    private eventBusService: EventBusService
+    private eventBusService: EventBusService,
+    private router : Router,
+    private toast : ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +38,8 @@ export class BoardAdminComponent implements OnInit {
       this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
+    }else {
+      this.router.navigate(['/login'])
     }
 
     this.eventBusSub = this.eventBusService.on('logout', () => {
@@ -48,8 +52,8 @@ export class BoardAdminComponent implements OnInit {
       next: res => {
         console.log(res);
         this.storageService.clean();
-
-        window.location.reload();
+        this.isLoggedIn = this.storageService.isLoggedIn();
+        this.router.navigate(['/login'])
       },
       error: err => {
         console.log(err);
