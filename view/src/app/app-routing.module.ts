@@ -8,15 +8,40 @@ import { ProfileComponent } from './profile/profile.component';
 import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
-
+import { ProductComponent } from './product/product.component';
+import {NewsComponent} from './news/news.component'
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'user', component: BoardUserComponent },
   { path: 'mod', component: BoardModeratorComponent },
-  { path: 'admin', component: BoardAdminComponent }
+  { path: 'admin', component: BoardAdminComponent ,children: [
+    {
+      path:'user',
+      component: BoardUserComponent,
+      data:{
+        breadcrumb:'Thông tin tài khoản ',
+        link:'admin/user'
+      }
+    },
+    {
+      path:'product',
+      component: ProductComponent,
+      data:{
+        breadcrumb:'Thông tin tài khoản ',
+        link:'admin/product'
+      }
+    },
+    {
+      path:'news',
+      component: NewsComponent,
+      data:{
+        breadcrumb:'Thông tin tài khoản ',
+        link:'admin/news'
+      }
+    }
+  ]}
 ];
 
 @NgModule({

@@ -1,5 +1,3 @@
 module.exports = {
-  HOST: "localhost",
-  PORT: 27017,
-  DB: "bezkoder_db"
+URL: "mongodb://localhost:27017/QL_admin"
 };
