@@ -19,6 +19,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductComponent } from './product/product.component';
 import { NewsComponent } from './news/news.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { NewsComponent } from './news/news.component';
     BoardModeratorComponent,
     BoardUserComponent,
     ProductComponent,
-    NewsComponent
+    NewsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
