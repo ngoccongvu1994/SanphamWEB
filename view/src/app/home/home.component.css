@@ -32,14 +32,12 @@ font-family: 'Times New Roman', Times, serif;
   text-transform: uppercase;
   text-align: center;
   color: #ffffff;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.3;
   margin: 0;
   padding: 12px 10px;
 }
-.caption {
-  font-size: 16px;
-}
+
 /* You can add global styles to this file, and also import other style files */
 .nav-item {
   cursor: pointer;
@@ -167,5 +165,70 @@ font-family: 'Times New Roman', Times, serif;
   color: #ffffff;
 
 }
+.heading{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1.3;
+    position: relative;
+    text-transform: uppercase;
+}
+.news {
+  margin-top:40px
+}
+.news .heading , .news .captions {
+    text-align: left;
+}
+.captions {
+    font-size: 20px;
+    text-align: center;
+    font-style: italic;
+    line-height: 1.3;
+    color: #4d5a6b;
+    margin-bottom: 60px;
+    position: relative;
+}
 
-
+.projects {
+  background: url(/assets/images/bg_header.png);
+  margin-top: 40px;
+  padding:20px 0 20px 0 ;
+}
+.news .card-body {
+    padding: 20px;
+    top: 25px;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    background: rgba(246, 246, 246, 0.804);
+    color: black
+}
+.news .card-title {
+  text-align: left;
+  position: relative;
+  min-height: 70px;
+  margin: 10px 0;
+  text-transform: uppercase;
+}
+.news .card-text {
+  font-size: 16px;
+  min-height: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+.news .read-more {
+  margin: 0 10px;
+  padding: 15px;
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 8px 15px;
+  font-weight: 700;
+  text-decoration-line: none;
+}
+.news a:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
