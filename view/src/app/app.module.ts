@@ -20,6 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductComponent } from './product/product.component';
 import { NewsComponent } from './news/news.component';
 import { FooterComponent } from './footer/footer.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,9 @@ import { FooterComponent } from './footer/footer.component';
     BoardUserComponent,
     ProductComponent,
     NewsComponent,
-    FooterComponent
+    FooterComponent,
+    MainMenuComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

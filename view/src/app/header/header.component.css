@@ -1,0 +1,55 @@
+.container-header{
+  background: url(/assets/images/bg_header.png);
+}
+.social-buttons {
+  padding-top: 30px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.social-buttons .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10%;
+  margin: 0 10px;
+  font-size: 20px;
+  /* color: #f1f1f1; */
+  transition: all 0.5s ease-out;
+}
+.social-buttons a{
+  background-color: white;
+  border: 2px solid grey;
+  -webkit-transition: all 2s;
+}
+.social-buttons a i {
+  color: #4d5a6b;
+}
+.social-buttons .btn-facebook:hover {
+  background-color: #3b5998;
+}
+.social-buttons .btn-facebook:hover i {
+  color: white;
+}
+.social-buttons .btn-google:hover {
+  background-color: #dd4b39;
+}
+.social-buttons .btn-google:hover i {
+  color: white;
+}
+.social-buttons .btn-youtube:hover {
+  background-color: #cd201f;
+}
+.social-buttons .btn-youtube:hover i {
+  color: white;
+}
+.social-buttons .btn-twitter:hover {
+  background-color: #1da1f2;
+}
+.social-buttons .btn-twitter:hover i {
+  color: white;
+}

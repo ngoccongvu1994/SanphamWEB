@@ -1,0 +1,90 @@
+.ul-item li {
+  margin-left: 20px;
+  margin-right: 30x;
+}
+.ul-item li a {
+color: aliceblue;
+font-size: 14px;
+font-family: 'Times New Roman', Times, serif;
+}
+#main-menu {
+  width: 100%;
+  position: relative;
+  background-color: #222222;
+}
+/* You can add global styles to this file, and also import other style files */
+.nav-item {
+  cursor: pointer;
+  height: 100%;
+}
+.dropbtn {
+  color: white;
+  font-size: 14px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #4d5a6b;
+  min-width: 260px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  text-decoration: none;
+  display: block;
+  min-width: 240px;
+}
+
+.dropdown-content a:hover {background-color: #4d5a6b;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #4d5a6b;}
+
+.dropdown:hover  {background-color: #4d5a6b;}
+/* hover line */
+.line {
+  font-family: 'Times New Roman', Times, serif;
+  position: relative;
+  /* float: left; */
+}
+
+.line:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  bottom: 0;
+  left: 0px;
+  transform: scaleX(0);
+  box-shadow:
+    0 3px 0 black;
+  transform-origin: bottom left;
+  transition: transform 0.5s ease-out;
+}
+.line:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+.box-contact {
+  background-color:#4d5a6b;
+  padding:20px;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  color: #f1f1f1;
+}
+
+.carousel-caption {
+  color: #ffffff;
+
+}
