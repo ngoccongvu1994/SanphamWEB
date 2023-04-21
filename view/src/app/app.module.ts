@@ -22,6 +22,7 @@ import { NewsComponent } from './news/news.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { HeaderComponent } from './header/header.component';
+import { IntroduceComponent } from './introduce/introduce.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { HeaderComponent } from './header/header.component';
     NewsComponent,
     FooterComponent,
     MainMenuComponent,
-    HeaderComponent
+    HeaderComponent,
+    IntroduceComponent
   ],
   imports: [
     BrowserModule,

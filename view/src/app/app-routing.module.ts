@@ -10,8 +10,10 @@ import { BoardModeratorComponent } from './board-moderator/board-moderator.compo
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { ProductComponent } from './product/product.component';
 import {NewsComponent} from './news/news.component'
+import {IntroduceComponent} from './introduce/introduce.component'
 const routes: Routes = [
   { path: '', component: HomeComponent },
+   { path: 'gioithieu', component: IntroduceComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },

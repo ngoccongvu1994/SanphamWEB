@@ -1,4 +1,6 @@
-
+.carousel-caption {
+  color: #ffffff;
+}
 .zoom {
   transition: transform .3s;
 }

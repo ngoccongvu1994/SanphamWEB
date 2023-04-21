@@ -83,8 +83,7 @@ font-family: 'Times New Roman', Times, serif;
   text-align: center;
   color: #f1f1f1;
 }
-
-.carousel-caption {
-  color: #ffffff;
-
+.current {
+background-color: #4d5a6b;
 }
+
