@@ -1,0 +1,7 @@
+.heading {
+  font-size: 22px;
+  font-weight: bold;
+}
+.form-contact input, textarea, button {
+  margin-top:20px;
+}

@@ -23,6 +23,8 @@ import { FooterComponent } from './footer/footer.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { HeaderComponent } from './header/header.component';
 import { IntroduceComponent } from './introduce/introduce.component';
+import { LstProductComponent } from './lst-product/lst-product.component';
+import { ContactComponent } from './contact/contact.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +40,9 @@ import { IntroduceComponent } from './introduce/introduce.component';
     FooterComponent,
     MainMenuComponent,
     HeaderComponent,
-    IntroduceComponent
+    IntroduceComponent,
+    LstProductComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
