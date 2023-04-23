@@ -8,6 +8,18 @@ const Product = mongoose.model(
     price: Number,
     category: String,
     image: String,
+    category: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category"
+      }
+    ],
+    category_child: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category"
+      }
+    ]
   })
 );
 module.exports = Product;

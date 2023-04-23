@@ -9,7 +9,7 @@ module.exports = function(app) {
   });
   app.post("/api/product/post", controller.post);
 
-  // app.get("/api/auth/get", controller.get);
+  app.get("/api/product/getAll", controller.getAll);
 
   // app.get("/api/auth/getAll", controller.get);
 };

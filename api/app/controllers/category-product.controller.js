@@ -1,24 +1,23 @@
 
 const db = require("../models");
-const Product = db.product;
+const Category = db.category;
 exports.post = (req, res) => {
-  const  product = new Product ({
+  const  Category = new Category ({
     name : req.body.name,
     description: req.body.description,
-    price: req.body.price,
-    category: req.body.category,
-    category_child: req.body.category_child,
-    image: req.body.image,
+    code: req.body.code,
+    parent: req.body.parent,
+    level: req.body.level,
   })
-  product.save((err)=>{
+  Category.save((err)=>{
     if(err){
         res.status(500).send({message: err})
     }
-    res.send({ message: "Product was registered successfully!"});
+    res.send({ message: "Category was registered successfully!"});
   })
 }
 exports.getAll = (req, res) => {
- Product.find({},  (err, data)=> {
+ Category.find({},  (err, data)=> {
     if(err) {
       res.status(500).send({ message: err });
       return;

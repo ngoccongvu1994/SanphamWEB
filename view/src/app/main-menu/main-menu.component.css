@@ -75,14 +75,6 @@ font-family: 'Times New Roman', Times, serif;
   transform: scaleX(1);
   transform-origin: bottom left;
 }
-
-.box-contact {
-  background-color:#4d5a6b;
-  padding:20px;
-  font-family: 'Times New Roman', Times, serif;
-  text-align: center;
-  color: #f1f1f1;
-}
 .current {
 background-color: #4d5a6b;
 }

@@ -25,6 +25,8 @@ import { HeaderComponent } from './header/header.component';
 import { IntroduceComponent } from './introduce/introduce.component';
 import { LstProductComponent } from './lst-product/lst-product.component';
 import { ContactComponent } from './contact/contact.component';
+import { DetailProdComponent } from './detail-prod/detail-prod.component';
+import { CategoryProdComponent } from './category-prod/category-prod.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,9 @@ import { ContactComponent } from './contact/contact.component';
     HeaderComponent,
     IntroduceComponent,
     LstProductComponent,
-    ContactComponent
+    ContactComponent,
+    DetailProdComponent,
+    CategoryProdComponent
   ],
   imports: [
     BrowserModule,

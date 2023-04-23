@@ -13,6 +13,7 @@ import {NewsComponent} from './news/news.component'
 import {IntroduceComponent} from './introduce/introduce.component'
 import {LstProductComponent} from './lst-product/lst-product.component'
 import {ContactComponent} from './contact/contact.component'
+import {CategoryProdComponent} from './category-prod/category-prod.component'
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'gioithieu', component: IntroduceComponent },
@@ -39,15 +40,22 @@ const routes: Routes = [
         breadcrumb:'Thông tin tài khoản ',
         link:'admin/product'
       }
-    },
-    {
-      path:'news',
-      component: NewsComponent,
+    },{
+      path:'cateProduct',
+      component: CategoryProdComponent,
       data:{
         breadcrumb:'Thông tin tài khoản ',
-        link:'admin/news'
+        link:'admin/cateProduct'
       }
-    }
+    },
+    // {
+    //   path:'news',
+    //   component: NewsComponent,
+    //   data:{
+    //     breadcrumb:'Thông tin tài khoản ',
+    //     link:'admin/news'
+    //   }
+    // }
   ]}
 ];
 

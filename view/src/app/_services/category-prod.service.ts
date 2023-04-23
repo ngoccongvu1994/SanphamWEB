@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ProductModel } from '../_model/product/product.model';
+import { CategoryProductModel } from '../_model/product/category_product.model';
 
 
-const AUTH_API = 'http://localhost:8080/api/product/';
+const AUTH_API = 'http://localhost:8080/api/category_product/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,19 +13,17 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService {
-
+export class CategoryProdService {
   constructor(private http: HttpClient) { }
-
-  post(productModel: ProductModel): Observable<any> {
+ post(CategoryProductModel: CategoryProductModel): Observable<any> {
     return this.http.post(
       AUTH_API + 'post',
       {
-        name: productModel.name,
-        description: productModel.description,
-        category: productModel.category,
-        price: productModel.price,
-        image: productModel.image,
+        name: CategoryProductModel.name,
+        description: CategoryProductModel.description,
+        category: CategoryProductModel.category,
+        category_parent: CategoryProductModel.category_parent,
+        code: CategoryProductModel.code,
       },
       httpOptions
     );
