@@ -41,12 +41,12 @@
     </form>
   </div>
   <div class="col-md-8">
-    <div id="accordion">
-      <div class="card" *ngFor="let item of lstCategory">
-        <div class="card-header" id="headingOne" *ngIf="item.level === 1">
+    <div  *ngFor="let item of lstCategory" >
+      <div class="card" id="accordion">
+        <div class="card-header" id="headingOne">
           <h5 class="mb-0">
-            <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapseOne'" aria-expanded="true"
-              [attr.aria-controls]="'collapseOne'">
+            <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapseOne'+ item._id" aria-expanded="true"
+              [attr.aria-controls]="'collapseOne'+ item._id">
               {{item.name}}
             </button>
             <button class="btn btn-danger float-right" (click)="deleteByCode(item.code)"><i
@@ -55,16 +55,17 @@
                 class="fa fa-edit"></i></button>
           </h5>
         </div>
-        <div [id]="'collapseOne'" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion"
-          *ngIf="item.level === 2">
-          <div class="card-body">
-            {{item.name}}
-            <button class="btn btn-danger float-right" (click)="deleteByCode(item.code)"><i
-              class="fa fa-trash"></i></button>
-              <button class="btn btn-warning float-right" (click)="editItem(item)"><i
-                class="fa fa-edit"></i></button>
+        <ng-container *ngFor="let x of item.listMenu">
+          <div [id]="'collapseOne'+ x.parent_id" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              {{x.name}}
+              <button class="btn btn-danger float-right" (click)="deleteByCode(x.code)"><i
+                class="fa fa-trash"></i></button>
+                <button class="btn btn-warning float-right" (click)="editItem(x)"><i
+                  class="fa fa-edit"></i></button>
+            </div>
           </div>
-        </div>
+        </ng-container>
       </div>
     </div>
   </div>

@@ -12,10 +12,17 @@ export class CategoryProdComponent {
     private svCategory: CategoryProdService,
     private toast : ToastrService,
   ){
-    this.Category = {}
-  }
+    this.Category = {
+      _id: '',
+      name: '',
+      code: '',
+      description:'',
+      level: 1,
+      parent_id: '',
+    }
+   }
   public lstCategory : any;
-  public Category: any;
+  public Category: CategoryProductModel;
   IsEdit = false;
   ngOnInit(): void {
     this.loadCategory()
@@ -51,6 +58,7 @@ async updateCate(){
       next: data => {
          this.toast.success('update success full');
          this.IsEdit = false;
+        //  this.Category = {};
       }
      });
   }
