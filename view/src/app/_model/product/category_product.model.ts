@@ -1,8 +1,8 @@
 export interface CategoryProductModel {
+  _id: string;
   name: string ;
   code: string;
   description: string;
-  category: string;
-  category_parent: string;
+  parent_id: string;
   level: Number;
 }

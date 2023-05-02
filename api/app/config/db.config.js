@@ -1,3 +1,3 @@
 module.exports = {
-URL: "mongodb://localhost:27017/QL_admin"
+URL: "mongodb+srv://ngoccongvu:vungoccong@cluster01.slxjspd.mongodb.net/test"
 };

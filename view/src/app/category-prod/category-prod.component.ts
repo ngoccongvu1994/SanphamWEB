@@ -10,21 +10,52 @@ import { ToastrService } from 'ngx-toastr';
 export class CategoryProdComponent {
     constructor(
     private svCategory: CategoryProdService,
-    private toast : ToastrService
+    private toast : ToastrService,
   ){
     this.Category = {}
   }
-  public lstProduct = [];
+  public lstCategory : any;
   public Category: any;
+  IsEdit = false;
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.loadCategory()
   }
  async createProduct(){
-   this.Category = await this.svCategory.post(this.Category).subscribe({
+    await this.svCategory.post(this.Category).subscribe({
     next: data => {
        this.toast.success('create success full');
        console.log(data);
+       this.loadCategory();
     }
    });
+  }
+  async loadCategory(){
+    await this.svCategory.getAll().subscribe({
+      next: data => {
+        this.lstCategory = data;
+        this.toast.success('load category success full');
+       console.log(data);
+      }
+    });
+  }
+  deleteByCode(code:string){
+    this.svCategory.deleteByCode(code).subscribe({
+      next: data => {
+        this.toast.success('load category success full');
+        this.loadCategory();
+      }
+    })
+  }
+async updateCate(){
+    await this.svCategory.update(this.Category).subscribe({
+      next: data => {
+         this.toast.success('update success full');
+         this.IsEdit = false;
+      }
+     });
+  }
+  editItem (item:any){
+    this.Category = item
+    this.IsEdit = true;
   }
 }

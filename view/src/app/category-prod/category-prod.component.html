@@ -1,32 +1,71 @@
 <div class="row">
-  <form action="/category_product" method="POST">
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="Category.name" required>
-        </div>
-        <div class="form-group">
-          <label for="description">Description:</label>
-          <textarea class="form-control" id="description" name="description"  [(ngModel)]="Category.description"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="price">Price:</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
+  <h3>Danh mục sản phẩm</h3>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <form action="/category_product" method="POST">
+      <div class="form-group">
+        <label for="name">Tên:</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="Category.name" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Mô tả:</label>
+        <textarea class="form-control" id="description" name="description"
+          [(ngModel)]="Category.description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="price">Mã:</label>
+        <div class="input-group">
+          <!-- <div class="input-group-prepend">
               <span class="input-group-text">$</span>
-            </div>
-            <input type="text" class="form-control" id="price" name="price" step="0.01"  [(ngModel)]="Category.code"required>
+            </div> -->
+          <input type="text" class="form-control" id="price" name="price" [(ngModel)]="Category.code" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <select class="form-control" [(ngModel)]="Category.parent_id" name="parent">
+          <option *ngFor="let item of lstCategory | filterLevel" [ngValue]="item._id">
+            <span style="font-size: 12pt;">{{item.name}}</span>
+          </option>
+        </select>
+      </div>
+      <!-- <div class="form-group">
+        <label for="image">Cấp:</label>
+        <input type="number" class="form-control" id="image" name="image" step="1" [(ngModel)]="Category.level">
+      </div> -->
+      <div class="form-group">
+        <button *ngIf="!IsEdit"  (click)="createProduct()" type="submit" class="btn btn-primary">Tạo mới</button>
+        <button *ngIf="IsEdit" (click)="updateCate()" type="submit" class="btn btn-primary">Cập nhật</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-8">
+    <div id="accordion">
+      <div class="card" *ngFor="let item of lstCategory">
+        <div class="card-header" id="headingOne" *ngIf="item.level === 1">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapseOne'" aria-expanded="true"
+              [attr.aria-controls]="'collapseOne'">
+              {{item.name}}
+            </button>
+            <button class="btn btn-danger float-right" (click)="deleteByCode(item.code)"><i
+              class="fa fa-trash"></i></button>
+              <button class="btn btn-warning float-right" (click)="editItem(item)"><i
+                class="fa fa-edit"></i></button>
+          </h5>
+        </div>
+        <div [id]="'collapseOne'" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion"
+          *ngIf="item.level === 2">
+          <div class="card-body">
+            {{item.name}}
+            <button class="btn btn-danger float-right" (click)="deleteByCode(item.code)"><i
+              class="fa fa-trash"></i></button>
+              <button class="btn btn-warning float-right" (click)="editItem(item)"><i
+                class="fa fa-edit"></i></button>
           </div>
         </div>
-        <div class="form-group">
-          <label for="category">Category:</label>
-          <input type="text" class="form-control" id="category" name="category" [(ngModel)]="Category.category">
-        </div>
-        <div class="form-group">
-          <label for="image">Image URL:</label>
-          <input type="number" class="form-control" id="image" name="image" [(ngModel)]="Category.level">
-        </div>
-        <div class="form-group">
-          <button (click)="createProduct()" type="submit" class="btn btn-primary">Create</button>
-        </div>
-      </form>
+      </div>
+    </div>
+  </div>
 </div>

@@ -6,13 +6,8 @@ const Category = mongoose.model(
     name: String,
     description: String,
     code: String,
-    parent: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Category"
-      }
-    ],
+    parent_id: String,
     level: Number
   })
 );
-module.exports = Product;
+module.exports = Category;

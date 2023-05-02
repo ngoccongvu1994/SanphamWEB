@@ -4,10 +4,11 @@ import { Observable } from 'rxjs';
 import { CategoryProductModel } from '../_model/product/category_product.model';
 
 
-const AUTH_API = 'http://localhost:8080/api/category_product/';
+const AUTH_API = 'http://localhost:8080/api/category/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  body: {}
 };
 
 @Injectable({
@@ -17,18 +18,22 @@ export class CategoryProdService {
   constructor(private http: HttpClient) { }
  post(CategoryProductModel: CategoryProductModel): Observable<any> {
     return this.http.post(
-      AUTH_API + 'post',
-      {
-        name: CategoryProductModel.name,
-        description: CategoryProductModel.description,
-        category: CategoryProductModel.category,
-        category_parent: CategoryProductModel.category_parent,
-        code: CategoryProductModel.code,
-      },
+      AUTH_API + 'post', CategoryProductModel,
       httpOptions
     );
   }
   getAll(): Observable<any> {
     return this.http.get(AUTH_API + 'getAll', {});
+  }
+  deleteByCode(code: string): Observable<any> {
+    httpOptions.body = {code: code}
+    return this.http.delete(
+      AUTH_API + 'deleteByCode/' + code, httpOptions
+    )
+  }
+  update(data: CategoryProductModel) :Observable<any>{
+    return this.http.put(
+      AUTH_API + 'update/' + data._id , {data}
+    )
   }
 }

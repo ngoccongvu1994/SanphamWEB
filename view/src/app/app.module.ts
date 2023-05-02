@@ -27,6 +27,7 @@ import { LstProductComponent } from './lst-product/lst-product.component';
 import { ContactComponent } from './contact/contact.component';
 import { DetailProdComponent } from './detail-prod/detail-prod.component';
 import { CategoryProdComponent } from './category-prod/category-prod.component';
+import { filterLevelPipe } from './pipe/filter-level.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,8 @@ import { CategoryProdComponent } from './category-prod/category-prod.component';
     LstProductComponent,
     ContactComponent,
     DetailProdComponent,
-    CategoryProdComponent
+    CategoryProdComponent,
+    filterLevelPipe
   ],
   imports: [
     BrowserModule,
