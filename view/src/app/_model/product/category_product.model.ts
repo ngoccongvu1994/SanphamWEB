@@ -5,4 +5,5 @@ export interface CategoryProductModel {
   description: string;
   parent_id?: string;
   level: Number;
+  listMenu?: CategoryProductModel[];
 }
