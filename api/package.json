@@ -1,7 +1,7 @@
 {
-  "name": "node-js-jwt-auth-mongodb",
+  "name": "anthanhphu",
   "version": "1.0.0",
-  "description": "Node.js + MongoDB: JWT Authentication & Authorization",
+  "description": "anthanhphu",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
@@ -28,5 +28,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.13",
     "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": "16.x"
   }
 }
