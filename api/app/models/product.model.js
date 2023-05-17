@@ -5,13 +5,8 @@ const Product = mongoose.model(
   new mongoose.Schema({
     name: String,
     description: String,
-    image: Buffer,
-    category: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Category"
-      }
-    ],
+    image: String,
+    category_id: String
   })
 );
 module.exports = Product;
