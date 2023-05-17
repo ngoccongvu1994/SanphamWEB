@@ -26,5 +26,7 @@ module.exports = function(app) {
 
   app.get("/api/product/getAll", controller.getAll);
 
-  // app.get("/api/auth/getAll", controller.get);
+  app.delete("/api/product/deleteByCode/:id", controller.deleteById);
+
+  app.put("/api/product/update/:id", controller.update);
 };

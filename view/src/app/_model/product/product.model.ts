@@ -1,8 +1,11 @@
 
 export interface ProductModel {
   name: string ;
-  price: number;
+  _id: string;
   description: string;
-  category: string;
+  category_id: string;
   image: any;
+  active: boolean,
+  createDate: Date,
+  updateDate: Date
 }

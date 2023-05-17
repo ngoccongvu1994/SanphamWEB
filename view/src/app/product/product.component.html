@@ -1,19 +1,48 @@
 
-  <h2>Danh sách sản phẩm</h2>
-  <button class="btn btn-primary" (click)="GetList()">Thêm mới</button>
   <div class="row">
-    <div class="col-md-3" *ngFor="let item of lstProduct">
-      <div class="card">
-        <!-- <img class="card-img-top zoom" [src]="item.image" alt="Product 1"> -->
-        <img class="card-img-top zoom" src="../../content/products/1684313695703-anh-dai-dien.jpg" alt="Product 1">
-        <div class="card-body">
-          <h5 class="card-title">{{item.name}}</h5>
-          <!-- <p class="card-text">Description of Product 1</p> -->
-        </div>
+      <div class="col-3"><h3>Danh sách sản phẩm</h3></div>
+      <div class="col-4">
+        <button class="btn btn-sm btn-primary" (click)="isCreate(true)">Thêm mới</button>
       </div>
-    </div>
   </div>
-<div class="row">
+  <div class="row" *ngIf="!isCreateProd && !isEditProd">
+    <table class="table table-hover" width="100%">
+      <thead>
+        <tr>
+            <td class="text-center"width="5%">STT</td>
+            <td class="text-center"width="15%">#</td>
+            <td class="text-center"width="15%">Tên sản phẩm</td>
+            <td class="text-center"width="20%">Mô tả</td>
+            <td class="text-center"width="10%">Phân loại</td>
+            <td class="text-center"width="10%">Ngày tạo</td>
+            <td class="text-center"width="10%">Ngày sửa</td>
+            <td class="text-center"width="5%">Active</td>
+            <td class="text-center"width="10%">#</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of lstProduct; let i = index">
+            <td class="text-center">{{i+1}}</td>
+            <td class="text-center">
+              <img src="/assets/images/product3.jpeg" alt="" width="70" height="70">
+            </td>
+            <td class="text-center">{{item.name}}</td>
+            <td class="text-center">{{item.description}}</td>
+            <td class="text-center">{{item.category.name}}</td>
+            <td class="text-center">{{item.createDate | date: 'dd/mm/yyyy'}}</td>
+            <td class="text-center">{{item.updateDate | date: 'dd/mm/yyyy'}}</td>
+              <td class="text-center">
+                  <input class="form-check-input form-switch" type="checkbox" role="switch" id="flexSwitchCheckChecked" [(ngModel)]="item.active"/>
+              </td>
+            <td class="text-center">
+              <button class="btn btn-warning" (click)="editItem(item)"><i class="fa fa-edit"></i></button>
+               <button class="btn btn-danger" (click)="deleteProd(item)"><i class="fa fa-trash"></i></button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<div class="row" *ngIf="isCreateProd || isEditProd">
   <div class="col-6">
     <form action="/products" method="POST">
       <div class="form-group">
@@ -36,8 +65,10 @@
         <label for="image">Ảnh sản phẩm :</label>
         <input type="file" id="image" (change)="onFileChange($event)" name="image" [(ngModel)]="FileImage" >
       </div>
-      <div class="form-group">
-        <button (click)="createProduct()" type="submit" class="btn btn-primary">Create</button>
+      <div class="form-group" >
+        <button  *ngIf="isCreateProd" (click)="createProduct()" type="submit" class="btn btn-primary">Tạo mới</button>
+        <button *ngIf="isEditProd" (click)="editProd(Product)" type="submit" class="btn btn-warning">Cập nhật</button>
+         <button class="btn btn-info" style="margin-left:20px"(click)="isCreate(false)">Thoát</button>
       </div>
     </form>
   </div>

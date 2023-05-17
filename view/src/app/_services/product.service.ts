@@ -7,7 +7,8 @@ import { ProductModel } from '../_model/product/product.model';
 const AUTH_API = 'http://localhost:8080/api/product/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+  body: {}
 };
 
 @Injectable({
@@ -22,7 +23,7 @@ export class ProductService {
     formData.append('image',FileImage)
     formData.append('name',productModel.name)
     formData.append('description',productModel.description)
-    formData.append('category',productModel.category)
+    formData.append('category',productModel.category_id)
     return this.http.post(
       AUTH_API + 'post',
       formData
@@ -30,5 +31,16 @@ export class ProductService {
   }
   getAll(): Observable<any> {
     return this.http.get(AUTH_API + 'getAll', {});
+  }
+  deleteByCode(id: string): Observable<any> {
+    httpOptions.body = {_id: id}
+    return this.http.delete(
+      AUTH_API + 'deleteByCode/' + id, httpOptions
+    )
+  }
+  update(data: ProductModel) :Observable<any>{
+    return this.http.put(
+      AUTH_API + 'update/' + data._id , {data}
+    )
   }
 }

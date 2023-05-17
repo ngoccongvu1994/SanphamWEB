@@ -21,6 +21,8 @@ export class ProductComponent implements OnInit {
   public lstProduct: any;
   public Product: any;
   public lstCategory : any;
+  public isCreateProd = false;
+  public isEditProd = false;
   ngOnInit(): void {
     this.loadCategory();
     this.GetList();
@@ -33,6 +35,10 @@ export class ProductComponent implements OnInit {
        console.log(data);
       }
     });
+  }
+  isCreate(boo: boolean){
+     this.isCreateProd = boo;
+     this.isEditProd = boo;
   }
  async createProduct(){
   if (!this.FileImage || !this.Product.name) {
@@ -62,5 +68,25 @@ export class ProductComponent implements OnInit {
          console.log(data);
         }
       });
+  }
+ async deleteProd(item: ProductModel){
+      this.svProduct.deleteByCode(item._id).subscribe({
+      next: data => {
+        this.toast.success('load category success full');
+        this.GetList();
+      }
+    })
+  }
+ async editProd(item:ProductModel){
+    await this.svProduct.update(item).subscribe({
+      next: data => {
+         this.toast.success('update success full');
+         this.isEditProd = false;
+      }
+     });
+  }
+  editItem (item:any){
+    this.Product = item
+    this.isEditProd = true;
   }
 }

@@ -6,7 +6,10 @@ const Product = mongoose.model(
     name: String,
     description: String,
     image: String,
-    category_id: String
+    category_id: String,
+    active: Boolean,
+    createDate: Date,
+    updateDate: Date
   })
 );
 module.exports = Product;
