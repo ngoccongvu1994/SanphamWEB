@@ -1,4 +1,6 @@
 const controller = require("../controllers/product.controller");
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 module.exports = function(app) {
   app.use(function(req, res, next) {
     res.header(
@@ -7,7 +9,7 @@ module.exports = function(app) {
     );
     next();
   });
-  app.post("/api/product/post", controller.post);
+  app.post("/api/product/post", upload.single('image'), controller.post);
 
   app.get("/api/product/getAll", controller.getAll);
 

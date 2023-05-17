@@ -1,32 +1,33 @@
-<div class="container">
-      <form action="/products" method="POST">
-        <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" class="form-control" id="name" name="name" [(ngModel)]="Product.name" required>
-        </div>
-        <div class="form-group">
-          <label for="description">Description:</label>
-          <textarea class="form-control" id="description" name="description"  [(ngModel)]="Product.description"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="price">Price:</label>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">$</span>
-            </div>
-            <input type="number" class="form-control" id="price" name="price" step="0.01"  [(ngModel)]="Product.price"required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="category">Category:</label>
-          <input type="text" class="form-control" id="category" name="category" [(ngModel)]="Product.category">
-        </div>
-        <div class="form-group">
-          <label for="image">Image URL:</label>
-          <input type="text" class="form-control" id="image" name="image" [(ngModel)]="Product.image">
-        </div>
-        <div class="form-group">
-          <button (click)="createProduct()" type="submit" class="btn btn-primary">Create</button>
-        </div>
-      </form>
-    </div>
+
+<div class="row">
+  <div class="col-6">
+    <form action="/products" method="POST">
+      <div class="form-group">
+        <label for="name">Tên:</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="Product.name" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Mô tả:</label>
+        <textarea class="form-control" id="description" name="description" [(ngModel)]="Product.description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="category">Phân loại:</label>
+        <select class="form-control" [(ngModel)]="Product.category" name="parent">
+          <option *ngFor="let item of lstCategory | filterLevel" [ngValue]="item._id">
+            <span style="font-size: 12pt;">{{item.name}}</span>
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="image">Ảnh sản phẩm :</label>
+        <input type="file" id="image" (change)="onFileChange($event)" name="image" [(ngModel)]="FileImage" >
+      </div>
+      <div class="form-group">
+        <button (click)="createProduct()" type="submit" class="btn btn-primary">Create</button>
+      </div>
+    </form>
+  </div>
+  <div class="col6">
+    <img *ngIf="FileImage" [src]="urlImage" alt="Selected Image" width="400" height="400">
+  </div>
+</div>

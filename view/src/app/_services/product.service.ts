@@ -17,17 +17,20 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  post(productModel: ProductModel): Observable<any> {
+  post(productModel: ProductModel, FileImage: File): Observable<any> {
+    const formData: FormData = new FormData () ;
+    formData.append('image',FileImage)
+    formData.append('name',productModel.name)
+    formData.append('description',productModel.description)
+    formData.append('category',productModel.category)
+    //  let body = {
+    //   name : productModel.name,
+    //   description : productModel.description,
+    //   category : productModel.category,
+    // }
     return this.http.post(
       AUTH_API + 'post',
-      {
-        name: productModel.name,
-        description: productModel.description,
-        category: productModel.category,
-        price: productModel.price,
-        image: productModel.image,
-      },
-      httpOptions
+      formData
     );
   }
   getAll(): Observable<any> {
