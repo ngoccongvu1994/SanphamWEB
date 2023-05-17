@@ -1,4 +1,18 @@
 
+  <h2>Danh sách sản phẩm</h2>
+  <button class="btn btn-primary" (click)="GetList()">Thêm mới</button>
+  <div class="row">
+    <div class="col-md-3" *ngFor="let item of lstProduct">
+      <div class="card">
+        <!-- <img class="card-img-top zoom" [src]="item.image" alt="Product 1"> -->
+        <img class="card-img-top zoom" src="../../content/products/1684313695703-anh-dai-dien.jpg" alt="Product 1">
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <!-- <p class="card-text">Description of Product 1</p> -->
+        </div>
+      </div>
+    </div>
+  </div>
 <div class="row">
   <div class="col-6">
     <form action="/products" method="POST">

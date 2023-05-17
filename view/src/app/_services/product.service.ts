@@ -23,11 +23,6 @@ export class ProductService {
     formData.append('name',productModel.name)
     formData.append('description',productModel.description)
     formData.append('category',productModel.category)
-    //  let body = {
-    //   name : productModel.name,
-    //   description : productModel.description,
-    //   category : productModel.category,
-    // }
     return this.http.post(
       AUTH_API + 'post',
       formData

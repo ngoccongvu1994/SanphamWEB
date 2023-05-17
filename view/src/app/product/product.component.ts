@@ -18,11 +18,12 @@ export class ProductComponent implements OnInit {
   }
   public FileImage: any;
   public urlImage =  '';
-  public lstProduct = [];
+  public lstProduct: any;
   public Product: any;
   public lstCategory : any;
   ngOnInit(): void {
     this.loadCategory();
+    this.GetList();
   }
   async loadCategory(){
     await this.svCategory.getAll().subscribe({
@@ -53,7 +54,13 @@ export class ProductComponent implements OnInit {
     }
   }
 
-  //   GetList(){
-  //   this.svProduct.get(this.Product)
-  // }
+  async  GetList(){
+      await this.svProduct.getAll().subscribe({
+        next: data => {
+          this.lstProduct = data;
+          this.toast.success('load category success full');
+         console.log(data);
+        }
+      });
+  }
 }

@@ -1,21 +1,8 @@
 const controller = require("../controllers/product.controller");
+const PathConfig = require("../config/path.config");
 const multer = require('multer');
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/products'); 
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname); // Tạo tên tệp duy nhất bằng cách kết hợp thời gian và tên gốc của tệp
-  }
-});
-const upload = multer({ 
-  storage: storage,
-  dest: 'uploads/' ,  
-  // storage: multer.memoryStorage(), // Lưu trữ dữ liệu đính kèm trong bộ nhớ
-  // limits: {
-  //   fileSize: 2 * 1024 * 1024 // Giới hạn kích thước tệp tin đính kèm (ví dụ: 5MB)
-  // }
-});
+const path = require('path');
+const fs = require('fs');
 module.exports = function(app) {
   app.use(function(req, res, next) {
     res.header(
@@ -23,6 +10,17 @@ module.exports = function(app) {
       "Origin, Content-Type, Accept"
     );
     next();
+  });
+  const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, path.join(__dirname,PathConfig.pathProduct)); 
+    },
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + '-' + file.originalname); // Tạo tên tệp duy nhất bằng cách kết hợp thời gian và tên gốc của tệp
+    }
+  });
+  const upload = multer({ 
+    storage: storage,
   });
   app.post("/api/product/post", upload.single('image'), controller.post);
 
