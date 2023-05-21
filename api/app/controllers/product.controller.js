@@ -4,7 +4,7 @@ const Product = db.product;
 const Category = db.category;
 const path = require('path');
 const fs = require('fs');
-
+const unidecode = require('unidecode');
 exports.post =  (req, res) => {
   // Lấy đường dẫn tới tệp đã tải lên
     const filePath = req.file;
@@ -29,7 +29,18 @@ exports.post =  (req, res) => {
     })
 }
 exports.getAll = (req, res) => {
- Product.find({}, async (err, data)=> {
+  let name = req.query.name; // Lấy tham số name từ query string
+  const category_id = req.query.category_id;
+  let query = {}; // Định nghĩa query mặc định
+  if(name){
+    name = { $regex: new RegExp(name, 'i')  }, // Tìm kiếm theo từ khóa có dấu
+    query.name = name
+  }
+  if(category_id && category_id !== ''){
+    query.category_id = category_id
+  }
+    console.log(query)
+    Product.find(query, async (err, data)=> {
     if(err) {
       res.status(500).send({ message: err });
       return;
@@ -41,11 +52,14 @@ exports.getAll = (req, res) => {
         _id: item._id,
         name: item.name,
         description: item.description,
-        category: docs
+        active: item.active,
+        createDate: item.createDate,
+        updateDate: item.updateDate,
+        category: docs,
+        category_id: item.category_id
         }
     })
    )
-   console.log(result)
     res.send(result);
  })
 }

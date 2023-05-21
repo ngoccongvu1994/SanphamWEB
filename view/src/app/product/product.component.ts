@@ -20,9 +20,15 @@ export class ProductComponent implements OnInit {
   public urlImage =  '';
   public lstProduct: any;
   public Product: any;
-  public lstCategory : any;
+  public lstCategory  = [{
+    name: 'Phân loại ',
+    _id: null,
+    level: 2
+  }];
   public isCreateProd = false;
   public isEditProd = false;
+  public strSearch = '';
+  public strCategory = '';
   ngOnInit(): void {
     this.loadCategory();
     this.GetList();
@@ -30,8 +36,12 @@ export class ProductComponent implements OnInit {
   async loadCategory(){
     await this.svCategory.getAll().subscribe({
       next: data => {
-        this.lstCategory = data;
-        this.toast.success('load category success full');
+        this.lstCategory = [...[
+          {name: 'Phân loại ',
+          _id: null,
+          level: 2}],
+          ...data];
+
        console.log(data);
       }
     });
@@ -47,8 +57,10 @@ export class ProductComponent implements OnInit {
   }
    this.Product = await this.svProduct.post(this.Product, this.FileImage ).subscribe({
     next: data => {
-       this.toast.success('create success full');
-       console.log(data);
+       this.toast.success('Thành công');
+       this.isCreateProd = false;
+       this.isEditProd = false;
+       this.GetList();
     }
    });
   }
@@ -61,10 +73,13 @@ export class ProductComponent implements OnInit {
   }
 
   async  GetList(){
-      await this.svProduct.getAll().subscribe({
+      await this.svProduct.getAll({
+        name: this.strSearch,
+        category_id: this.strCategory
+      }).subscribe({
         next: data => {
           this.lstProduct = data;
-          this.toast.success('load category success full');
+          // this.toast.success('load category success full');
          console.log(data);
         }
       });
@@ -72,7 +87,7 @@ export class ProductComponent implements OnInit {
  async deleteProd(item: ProductModel){
       this.svProduct.deleteByCode(item._id).subscribe({
       next: data => {
-        this.toast.success('load category success full');
+        this.toast.success('Thành công');
         this.GetList();
       }
     })
@@ -85,7 +100,7 @@ export class ProductComponent implements OnInit {
       }
      });
   }
-  editItem (item:any){
+  editItem (item:ProductModel){
     this.Product = item
     this.isEditProd = true;
   }

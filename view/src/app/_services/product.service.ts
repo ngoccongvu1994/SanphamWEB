@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ProductModel } from '../_model/product/product.model';
 
@@ -29,8 +29,14 @@ export class ProductService {
       formData
     );
   }
-  getAll(): Observable<any> {
-    return this.http.get(AUTH_API + 'getAll', {});
+  getAll(params: any): Observable<any> {
+    let httpParams = new HttpParams();
+    Object.keys(params).forEach((key) => {
+     if(params[key]){ // check value default
+       httpParams = httpParams.append(key, params[key]);
+     }
+    });
+    return this.http.get(AUTH_API + 'getAll', {params: httpParams} );
   }
   deleteByCode(id: string): Observable<any> {
     httpOptions.body = {_id: id}

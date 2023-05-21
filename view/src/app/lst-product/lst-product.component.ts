@@ -18,8 +18,9 @@ export class LstProductComponent {
   this.loadProd();
  }
  async loadProd() {
-  this.svProduct.getAll();
-     const d = await this.svProduct.getAll().subscribe({
+     const d = await this.svProduct.getAll({
+    name: ''
+  }).subscribe({
     next: data => {
        this.toast.success('create success full');
        console.log(data);

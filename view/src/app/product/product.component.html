@@ -1,11 +1,26 @@
 
   <div class="row">
       <div class="col-3"><h3>Danh sách sản phẩm</h3></div>
-      <div class="col-4">
-        <button class="btn btn-sm btn-primary" (click)="isCreate(true)">Thêm mới</button>
+      <div class="col-4 offset-4">
+        <button class="btn btn-md btn-warning float-right" (click)="isCreate(true)">Thêm mới</button>
       </div>
   </div>
-  <div class="row" *ngIf="!isCreateProd && !isEditProd">
+  <div class="row" *ngIf="!isCreateProd && !isEditProd" style="margin-top: 20px;">
+    <div class="col-3">
+      <input type="text" class="form-control" placeholder="tìm kiếm" [(ngModel)]="strSearch">
+    </div>
+     <div class="col-2">
+      <select class="form-control" (change)="GetList()" [(ngModel)]="strCategory" name="parent" placeholder="Phân loại">
+          <option *ngFor="let item of lstCategory " [ngValue]="item._id">
+            <span style="font-size: 12pt;">{{item.name}}</span>
+          </option>
+        </select>
+    </div>
+    <div class="col-2">
+      <button class="btn btn-sm btn-primary"(click)="GetList()"><i class="fa fa-search">Tìm kiếm</i></button>
+    </div>
+  </div>
+  <div class="row" *ngIf="!isCreateProd && !isEditProd" style="margin-top: 20px;">
     <table class="table table-hover" width="100%">
       <thead>
         <tr>
@@ -55,8 +70,8 @@
       </div>
       <div class="form-group">
         <label for="category">Phân loại:</label>
-        <select class="form-control" [(ngModel)]="Product.category" name="parent">
-          <option *ngFor="let item of lstCategory | filterLevel" [ngValue]="item._id">
+        <select class="form-control" [(ngModel)]="Product.category_id" name="parent">
+          <option *ngFor="let item of lstCategory | filterLevel : 1" [ngValue]="item._id">
             <span style="font-size: 12pt;">{{item.name}}</span>
           </option>
         </select>
@@ -67,7 +82,7 @@
       </div>
       <div class="form-group" >
         <button  *ngIf="isCreateProd" (click)="createProduct()" type="submit" class="btn btn-primary">Tạo mới</button>
-        <button *ngIf="isEditProd" (click)="editProd(Product)" type="submit" class="btn btn-warning">Cập nhật</button>
+        <button *ngIf="isEditProd && !isCreateProd" (click)="editProd(Product)" type="submit" class="btn btn-warning">Cập nhật</button>
          <button class="btn btn-info" style="margin-left:20px"(click)="isCreate(false)">Thoát</button>
       </div>
     </form>
