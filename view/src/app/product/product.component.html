@@ -6,6 +6,13 @@
       </div>
   </div>
   <div class="row" *ngIf="!isCreateProd && !isEditProd" style="margin-top: 20px;">
+    <div class="col-1">
+      <select  class="form-control" [(ngModel)]="pageSize" (change)="GetList()">
+        <option value=5>5</option>
+        <option value=10>10</option>
+        <option value=30>30</option>
+      </select>
+    </div>
     <div class="col-3">
       <input type="text" class="form-control" placeholder="tìm kiếm" [(ngModel)]="strSearch">
     </div>
@@ -36,7 +43,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of lstProduct; let i = index">
+        <tr *ngFor="let item of lstProduct | paginate: { itemsPerPage: pageSize, currentPage: pageIndex , totalItems: lstProduct.length}; let i = index">
             <td class="text-center">{{i+1}}</td>
             <td class="text-center">
               <img src="/assets/images/product3.jpeg" alt="" width="70" height="70">
@@ -56,6 +63,16 @@
         </tr>
       </tbody>
     </table>
+    <div class="pagination">
+      <pagination-controls class="float-right"
+      (pageChange)="pageIndex = $event"
+      [maxSize]="5"
+      [directionLinks]="true"
+      [autoHide]="false"
+      [totalItems]="totalItems"
+      [itemsPerPage]="pageSize"
+      ></pagination-controls>
+    </div>
   </div>
 <div class="row" *ngIf="isCreateProd || isEditProd">
   <div class="col-6">

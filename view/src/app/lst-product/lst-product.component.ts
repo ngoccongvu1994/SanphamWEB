@@ -13,15 +13,16 @@ export class LstProductComponent {
     private toast : ToastrService
  ) {
  }
-   public lstProduct = [];
+   public lstProduct :any;
  ngOnInit(){
   this.loadProd();
  }
  async loadProd() {
-     const d = await this.svProduct.getAll({
+    await this.svProduct.getAll({
     name: ''
   }).subscribe({
     next: data => {
+      this.lstProduct = data;
        this.toast.success('create success full');
        console.log(data);
     }

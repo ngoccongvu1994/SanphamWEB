@@ -29,6 +29,9 @@ export class ProductComponent implements OnInit {
   public isEditProd = false;
   public strSearch = '';
   public strCategory = '';
+  public pageSize = 5;
+  public pageIndex = 1;
+  public totalItems = 0;
   ngOnInit(): void {
     this.loadCategory();
     this.GetList();
@@ -75,11 +78,13 @@ export class ProductComponent implements OnInit {
   async  GetList(){
       await this.svProduct.getAll({
         name: this.strSearch,
-        category_id: this.strCategory
+        category_id: this.strCategory,
+        pageSize: this.pageSize,
+        pageIndex: this.pageIndex
       }).subscribe({
         next: data => {
           this.lstProduct = data;
-          // this.toast.success('load category success full');
+          this.totalItems = this.lstProduct.length;
          console.log(data);
         }
       });

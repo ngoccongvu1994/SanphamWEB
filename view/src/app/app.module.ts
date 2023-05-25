@@ -28,6 +28,7 @@ import { ContactComponent } from './contact/contact.component';
 import { DetailProdComponent } from './detail-prod/detail-prod.component';
 import { CategoryProdComponent } from './category-prod/category-prod.component';
 import { filterLevelPipe } from './pipe/filter-level.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +60,7 @@ import { filterLevelPipe } from './pipe/filter-level.pipe';
     NgbCarouselModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

@@ -29,6 +29,8 @@ exports.post =  (req, res) => {
     })
 }
 exports.getAll = (req, res) => {
+  const pageIndex = Number(req.query.pageIndex)
+  const pageSize = Number(req.query.pageSize)
   let name = req.query.name; // Lấy tham số name từ query string
   const category_id = req.query.category_id;
   let query = {}; // Định nghĩa query mặc định
@@ -39,7 +41,7 @@ exports.getAll = (req, res) => {
   if(category_id && category_id !== ''){
     query.category_id = category_id
   }
-    console.log(query)
+    console.log(pageSize)
     Product.find(query, async (err, data)=> {
     if(err) {
       res.status(500).send({ message: err });
@@ -61,7 +63,9 @@ exports.getAll = (req, res) => {
     })
    )
     res.send(result);
- })
+ }) 
+   .skip((pageIndex - 1) * pageSize)
+   .limit(pageSize);
 }
 exports.deleteById = (req,res) => {
   Product.deleteOne({_id : req.body._id}, (err)=> {
