@@ -1,20 +1,49 @@
 <app-header></app-header>
 <app-main-menu></app-main-menu>
 <div class="wrap">
-   <img src="/assets/images/cover.jpg" alt="">
+  <img src="/assets/images/cover.jpg" alt="">
 </div>
 <div class="container">
   <div class="row" style="margin-top: 20px;">
-      <div class="col-md-3" *ngFor="let item of lstProduct">
-        <div class="card">
-          <img class="card-img-top zoom" src="/assets/images/product4.png" alt="Product 1">
-          <div class="card-body">
-            <h5 class="card-title">{{item.name}}</h5>
-            <!-- <p class="card-text">Description of Product 1</p> -->
+    <div class="col-9">
+      <div class="row">
+        <div class="col-md-4" style="margin-top: 20px;"
+          *ngFor="let item of lstProduct | paginate: { itemsPerPage: 20, currentPage: pageIndex , totalItems: totalItems }">
+          <div class="card">
+            <img class="card-img-top zoom" src="/assets/images/product4.png" alt="Product 1">
+            <div class="card-body">
+              <h5 class="card-title">{{item.name}}</h5>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-3 widget">
+      <div class="widget-tittle" style="margin-top: 20px;">
+        <span>Sản phẩm</span>
+      </div>
+      <div class="widget-content">
+        <div  *ngFor="let item of lstCategory" >
+          <ul class="menu-ul" id="accordion">
+            <li id="headingOne" [ngClass]="{'has-child': item.listMenu.length > 0 }">
+                <a data-toggle="collapse" [attr.data-target]="'#collapseOne'+ item._id" aria-expanded="true"
+                  [attr.aria-controls]="'collapseOne'+ item._id">
+                  {{item.name}}
+              </a>
+              <ul class="menu-sub" *ngFor="let x of item.listMenu">
+                <li [id]="'collapseOne'+ x.parent_id" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <span>{{x.name}}</span>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+  <div class="pagination" style="margin-top: 20px;text-align: right;">
+    <pagination-controls class="float-right" (pageChange)="pageIndex = $event" [maxSize]="5" [autoHide]="false"
+      previousLabel="Prev" nextLabel="Next"></pagination-controls>
+  </div>
   <app-footer>
-</app-footer>
+  </app-footer>

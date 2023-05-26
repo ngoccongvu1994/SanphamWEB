@@ -62,7 +62,12 @@ exports.getAll = (req, res) => {
         }
     })
    )
-    res.send(result);
+    res.send({
+      tutorials: result,
+      totalItem: result.length,
+      totalPages: 2,
+      currentPage: pageIndex
+    });
  }) 
    .skip((pageIndex - 1) * pageSize)
    .limit(pageSize);

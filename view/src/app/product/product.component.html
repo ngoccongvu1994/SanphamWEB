@@ -43,7 +43,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of lstProduct | paginate: { itemsPerPage: pageSize, currentPage: pageIndex , totalItems: lstProduct.length}; let i = index">
+        <tr *ngFor="let item of lstProduct | paginate: { itemsPerPage: pageSize, currentPage: pageIndex , totalItems: totalItems }; let i = index">
             <td class="text-center">{{i+1}}</td>
             <td class="text-center">
               <img src="/assets/images/product3.jpeg" alt="" width="70" height="70">
@@ -67,10 +67,9 @@
       <pagination-controls class="float-right"
       (pageChange)="pageIndex = $event"
       [maxSize]="5"
-      [directionLinks]="true"
       [autoHide]="false"
-      [totalItems]="totalItems"
-      [itemsPerPage]="pageSize"
+      previousLabel="Prev"
+      nextLabel="Next"
       ></pagination-controls>
     </div>
   </div>

@@ -82,10 +82,10 @@ export class ProductComponent implements OnInit {
         pageSize: this.pageSize,
         pageIndex: this.pageIndex
       }).subscribe({
-        next: data => {
-          this.lstProduct = data;
-          this.totalItems = this.lstProduct.length;
-         console.log(data);
+        next: res => {
+          this.lstProduct = res.tutorials;
+          this.totalItems = res.totalItem;
+         console.log(res);
         }
       });
   }
