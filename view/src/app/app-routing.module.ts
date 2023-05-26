@@ -17,7 +17,7 @@ import {CategoryProdComponent} from './category-prod/category-prod.component'
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'gioithieu', component: IntroduceComponent },
-  { path: 'sanpham', component: LstProductComponent },
+  { path: 'sanpham/:code', component: LstProductComponent},
   { path: 'tintuc', component: NewsComponent },
   { path: 'lienhe', component: ContactComponent },
   { path: 'login', component: LoginComponent },

@@ -16,15 +16,15 @@
               class="nav-link ">Giới thiệu</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropbtn"  [routerLink]="['/sanpham']" routerLinkActive="current"
+            <a class="nav-link dropbtn"  [routerLink]="['/sanpham' ,'' ]" routerLinkActive="current"
             [routerLinkActiveOptions]="{exact: true}">Sản phẩm</a>
             <div class="dropdown-content">
               <ul class="navbar-nav sub-menu" *ngFor="let item of lstMenu">
                 <li class="nav-item menu-item" style="margin-left: 0px;">
-                    <a class="nav-link ">{{item.name}}</a>
+                    <a class="nav-link" [routerLink]="['/sanpham/' , item.code]">{{item.name}}</a>
                     <ul class="navbar-nav sub-menu1">
                       <li class="nav-item menu-item" *ngFor="let x of item.listMenu">
-                        <a class="nav-link" href="#">{{x.name}}</a>
+                        <a class="nav-link" [routerLink]="['/sanpham/' , x.code]">{{x.name}}</a>
                       </li>
                     </ul>
                 </li>

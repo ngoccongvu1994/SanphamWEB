@@ -3,6 +3,7 @@ import { ProductModel } from '../_model/product/product.model';
 import { ProductService } from '../_services/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryProdService } from '../_services/category-prod.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-lst-product',
   templateUrl: './lst-product.component.html',
@@ -13,19 +14,23 @@ export class LstProductComponent {
     private svProduct: ProductService,
     private toast : ToastrService,
     private svCategory: CategoryProdService,
+    private route: ActivatedRoute,
  ) {
  }
    public lstProduct :any;
    public totalItems: any;
    public pageIndex = 1;
    public lstCategory : any;
+   public codeProd = '';
  ngOnInit(){
+  this.codeProd = this.route.snapshot.params['code'];
   this.loadProd();
   this.loadCategory();
  }
  async loadProd() {
     await this.svProduct.getAll({
       name: '',
+      code: this.codeProd,
       category_id: '',
       pageSize: 20,
       pageIndex: this.pageIndex

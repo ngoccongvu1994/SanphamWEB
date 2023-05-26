@@ -31,6 +31,7 @@ exports.post =  (req, res) => {
 exports.getAll = (req, res) => {
   const pageIndex = Number(req.query.pageIndex)
   const pageSize = Number(req.query.pageSize)
+  const codeProd = Number(req.query.codeProd)
   let name = req.query.name; // Lấy tham số name từ query string
   const category_id = req.query.category_id;
   let query = {}; // Định nghĩa query mặc định
@@ -41,7 +42,9 @@ exports.getAll = (req, res) => {
   if(category_id && category_id !== ''){
     query.category_id = category_id
   }
-    console.log(pageSize)
+  if(codeProd){
+    query.code = codeProd
+  }
     Product.find(query, async (err, data)=> {
     if(err) {
       res.status(500).send({ message: err });
