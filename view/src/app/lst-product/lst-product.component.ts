@@ -23,7 +23,11 @@ export class LstProductComponent {
    public lstCategory : any;
    public codeProd = '';
  ngOnInit(){
-  this.codeProd = this.route.snapshot.params['code'];
+  this.route.params.subscribe(params => {
+    this.codeProd = this.route.snapshot.params['code'];;
+    console.log(this.codeProd);
+    this.loadProd();
+  });
   this.loadProd();
   this.loadCategory();
  }

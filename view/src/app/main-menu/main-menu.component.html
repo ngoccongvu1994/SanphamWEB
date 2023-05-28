@@ -19,7 +19,7 @@
             <a class="nav-link dropbtn"  [routerLink]="['/sanpham' ,'' ]" routerLinkActive="current"
             [routerLinkActiveOptions]="{exact: true}">Sản phẩm</a>
             <div class="dropdown-content">
-              <ul class="navbar-nav sub-menu" *ngFor="let item of lstMenu">
+              <ul class="navbar-nav sub-menu" *ngFor="let item of lstMenu | filterLevel : 1">
                 <li class="nav-item menu-item" style="margin-left: 0px;">
                     <a class="nav-link" [routerLink]="['/sanpham/' , item.code]">{{item.name}}</a>
                     <ul class="navbar-nav sub-menu1">

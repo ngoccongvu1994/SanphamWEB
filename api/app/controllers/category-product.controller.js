@@ -3,7 +3,6 @@ const db = require("../models");
 const { ObjectId } = require('mongodb').ObjectID;
 const Category = db.category;
 exports.post = (req, res) => {
-    console.log(req.body)
   const  category = new Category ({
     name : req.body.name,
     description: req.body.description,
@@ -19,7 +18,7 @@ exports.post = (req, res) => {
   })
 }
  exports.getAll = (req, res) => {
-  Category.find({level: 1},async (err, data)=> {
+  Category.find({},async (err, data)=> {
     if(err) {
       res.status(500).send({ message: err });
       return;
@@ -57,7 +56,7 @@ exports.update = (req,res) => {
     level: req.body.data.level
   } 
   const ID = req.params.id
-  console.log(updateObject)
+  // console.log(updateObject)
   Category.updateOne({_id : ObjectId(ID)}, {$set: updateObject}, (err)=> {
     if(err) {
       res.status(500).send({ message: err });

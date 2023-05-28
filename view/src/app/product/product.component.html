@@ -87,7 +87,7 @@
       <div class="form-group">
         <label for="category">Phân loại:</label>
         <select class="form-control" [(ngModel)]="Product.category_id" name="parent">
-          <option *ngFor="let item of lstCategory | filterLevel : 1" [ngValue]="item._id">
+          <option *ngFor="let item of lstCategory " [ngValue]="item._id">
             <span style="font-size: 12pt;">{{item.name}}</span>
           </option>
         </select>
