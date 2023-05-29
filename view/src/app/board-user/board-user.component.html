@@ -2,26 +2,30 @@
   <h3>Thông tin liên hệ </h3>
 </div>
 <div class="row">
-  <table class="table table-hover" width="100%">
+  <table class="table" width="100%">
     <thead>
       <tr>
         <th width="20%"> Thông số </th>
         <th width="70%"> Thông tin  </th>
-        <th width="10%"> Khác  </th>
+        <th width="10%"> <button class="btn btn-sm btn-primary" (click)="addNew()"><i class="fa fa-plus"> Thêm mới</i></button>  </th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td> <input type="text" class="form-control" [(ngModel)]="Info.name"></td>
-        <td> <input type="text" class="form-control" [(ngModel)]="Info.value"></td>
-        <td>
-          <button class="btn btn-sm btn-info">
+      <tr *ngFor="let item of lstInfo">
+        <td> <input type="text" class="form-control" [(ngModel)]="item.name" [disabled]="!item.IsEdit"></td>
+        <td> <input type="text" class="form-control" [(ngModel)]="item.value" [disabled]="!item.IsEdit"></td>
+        <td *ngIf="!item.IsEdit">
+          <button class="btn btn-sm btn-info" (click)="editItem(item)">
             <i class="fa fa-edit"></i>
           </button>
-          <button class="btn btn-sm btn-danger">
+          <button class="btn btn-sm btn-danger" (click)="delete(item._id)">
             <i class="fa fa-trash"></i>
           </button>
-          <button class="btn btn-sm btn-primary" (click)="creatInfo()"><i class="fa fa-plus"></i></button>
+        </td>
+        <td *ngIf="item.IsEdit">
+            <button class="btn btn-sm btn-info" (click)="creatOrUpdateInfo(item)">
+            <i class="fa fa-check"></i>
+          </button>
         </td>
       </tr>
     </tbody>

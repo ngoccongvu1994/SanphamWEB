@@ -17,16 +17,18 @@ exports.post = (req, res) => {
   })
 }
  exports.getAll = (req, res) => {
-    InfoContact.find({},async (err, data)=> {
+    Info.find({},(err, data)=> {
     if(err) {
       res.status(500).send({ message: err });
       return;
     }
-    res.send(result);
+    console.log(data)
+    res.send(data);
  })
 }
-exports.deleteByCode = (req,res) => {
-    InfoContact.deleteOne({code : req.body.code}, (err)=> {
+exports.delete = (req,res) => {
+  const ID = req.params.id
+    Info.deleteOne({_id : ObjectId(ID)}, (err)=> {
     if(err) {
       res.status(500).send({ message: err });
       return;
@@ -37,12 +39,10 @@ exports.deleteByCode = (req,res) => {
 exports.update = (req,res) => {
   const updateObject  = {
     name : req.body.data.name,
-    code : req.body.data.code,
-    description: req.body.data.description,
-    level: req.body.data.level
+    value : req.body.data.value,
   } 
   const ID = req.params.id
-  InfoContact.updateOne({_id : ObjectId(ID)}, {$set: updateObject}, (err)=> {
+  Info.updateOne({_id : ObjectId(ID)}, {$set: updateObject}, (err)=> {
     if(err) {
       res.status(500).send({ message: err });
       return;

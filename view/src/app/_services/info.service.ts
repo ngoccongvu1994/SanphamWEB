@@ -28,10 +28,10 @@ export class InfoService {
   getAll(): Observable<any> {
     return this.http.get(AUTH_API + 'getAll', {});
   }
-  deleteByCode(id: string): Observable<any> {
+  delete(id: string): Observable<any> {
     httpOptions.body = {_id: id}
     return this.http.delete(
-      AUTH_API + 'deleteByCode/' + id, httpOptions
+      AUTH_API + 'delete/' + id, httpOptions
     )
   }
   update(data: InfoModel) :Observable<any>{
