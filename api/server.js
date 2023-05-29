@@ -1,11 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
-
 const dbConfig = require("./app/config/db.config");
-
 const app = express();
-
 var corsOptions = {
   origin: ["http://localhost:4200"],
   credentials: true
@@ -54,7 +51,7 @@ require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/product.routes")(app);
 require("./app/routes/categoryProd.routes")(app);
-
+require("./app/routes/info.router")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

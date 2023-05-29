@@ -41,7 +41,7 @@
     </form>
   </div>
   <div class="col-md-8">
-    <div  *ngFor="let item of lstCategory" >
+    <div  *ngFor="let item of lstCategory | filterLevel : 1" >
       <div class="card" id="accordion">
         <div class="card-header" id="headingOne">
           <h5 class="mb-0">

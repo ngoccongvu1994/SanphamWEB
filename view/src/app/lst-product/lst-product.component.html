@@ -23,7 +23,7 @@
         <span>Sản phẩm</span>
       </div>
       <div class="widget-content">
-        <div  *ngFor="let item of lstCategory" >
+        <div  *ngFor="let item of lstCategory | filterLevel : 1" >
           <ul class="menu-ul" id="accordion">
             <li id="headingOne" [ngClass]="{'has-child': item.listMenu.length > 0 }">
                 <a data-toggle="collapse" [attr.data-target]="'#collapseOne'+ item._id" aria-expanded="true"

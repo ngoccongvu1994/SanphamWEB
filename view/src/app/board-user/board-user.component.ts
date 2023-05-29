@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { InfoModel } from '../_model/infoContact.model';
+import { InfoService } from '../_services/info.service';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -9,25 +12,32 @@ import { UserService } from '../_services/user.service';
 export class BoardUserComponent implements OnInit {
   content?: string;
 
-  constructor(private userService: UserService) { }
-
+  constructor(
+    public svInfo : InfoService,
+    private toast : ToastrService,
+  ) {
+    this.Info = {
+      name: '',
+      _id : '',
+      name_tag: '',
+      value: '',
+      active: true
+    }
+   }
+ public lstInfo : any;
+ public Info : InfoModel;
   ngOnInit(): void {
-    this.userService.getUserBoard().subscribe({
+    this.loadInfo();
+  }
+ async loadInfo(){
+    this.lstInfo  = await this.svInfo.getAll();
+  }
+  async creatInfo(){
+    await this.svInfo.post(this.Info).subscribe({
       next: data => {
-        this.content = data;
-      },
-      error: err => {
-        if (err.error) {
-          try {
-            const res = JSON.parse(err.error);
-            this.content = res.message;
-          } catch {
-            this.content = `Error with status: ${err.status} - ${err.statusText}`;
-          }
-        } else {
-          this.content = `Error with status: ${err.status}`;
-        }
+         this.toast.success('Khởi tạo thành công');
+         this.loadInfo();
       }
-    });
+     });
   }
 }

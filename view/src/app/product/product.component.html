@@ -1,9 +1,6 @@
 
   <div class="row">
       <div class="col-3"><h3>Danh sách sản phẩm</h3></div>
-      <div class="col-4 offset-4">
-        <button class="btn btn-md btn-warning float-right" (click)="isCreate(true)">Thêm mới</button>
-      </div>
   </div>
   <div class="row" *ngIf="!isCreateProd && !isEditProd" style="margin-top: 20px;">
     <div class="col-1">
@@ -25,6 +22,9 @@
     </div>
     <div class="col-2">
       <button class="btn btn-sm btn-primary"(click)="GetList()"><i class="fa fa-search">Tìm kiếm</i></button>
+    </div>
+    <div class="col-2 offset-2">
+      <button class="btn btn-sm btn-warning float-right" (click)="isCreate(true)">Thêm mới</button>
     </div>
   </div>
   <div class="row" *ngIf="!isCreateProd && !isEditProd" style="margin-top: 20px;">

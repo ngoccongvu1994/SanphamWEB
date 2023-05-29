@@ -1,3 +1,29 @@
 <div class="row">
-  <h2>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam amet, velit maxime qui illum neque commodi accusantium praesentium nisi, vel molestias omnis quis aperiam consequuntur iste in non debitis ducimus!</h2>
+  <h3>Thông tin liên hệ </h3>
+</div>
+<div class="row">
+  <table class="table table-hover" width="100%">
+    <thead>
+      <tr>
+        <th width="20%"> Thông số </th>
+        <th width="70%"> Thông tin  </th>
+        <th width="10%"> Khác  </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> <input type="text" class="form-control" [(ngModel)]="Info.name"></td>
+        <td> <input type="text" class="form-control" [(ngModel)]="Info.value"></td>
+        <td>
+          <button class="btn btn-sm btn-info">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button class="btn btn-sm btn-danger">
+            <i class="fa fa-trash"></i>
+          </button>
+          <button class="btn btn-sm btn-primary" (click)="creatInfo()"><i class="fa fa-plus"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

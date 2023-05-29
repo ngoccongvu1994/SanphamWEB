@@ -10,8 +10,8 @@ body {
   background: linear-gradient(rgba(35, 166, 199, 0.7), rgba(0, 0, 0, .9));
   background-size: cover;
 }
-.top-navbar {
-  background-color: #999;
+.main-content {
+  background-color: #fdfbfb;
 }
 .bottom-border {
   border-bottom: 1px groove#eee;
