@@ -4,9 +4,13 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "prod": "npm run start:prod",
+    "start:prod": "ng serve --prod",
+    "build": "npm run build:prod",
+    "build:prod": "node --max_old_space_size=8192 node_modules/@angular/cli/bin/ng build -c production --build-optimizer=true --aot=true --delete-output-path --base-href / --deploy-url / --output-path v2 --source-map=false",
+    "build:v2": "npm run build:prod"
   },
   "engines": {
     "node": "16.x"

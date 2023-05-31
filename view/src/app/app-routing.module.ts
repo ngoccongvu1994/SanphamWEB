@@ -48,19 +48,11 @@ const routes: Routes = [
         link:'admin/cateProduct'
       }
     },
-    // {
-    //   path:'news',
-    //   component: NewsComponent,
-    //   data:{
-    //     breadcrumb:'Thông tin tài khoản ',
-    //     link:'admin/news'
-    //   }
-    // }
   ]}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

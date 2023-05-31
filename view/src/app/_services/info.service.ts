@@ -5,7 +5,7 @@ import { InfoModel } from '../_model/infoContact.model';
 
 
 
-const AUTH_API = 'http://localhost:8080/api/info/';
+const AUTH_API = 'https://anthanhphu.com.vn:8080/api/info/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
