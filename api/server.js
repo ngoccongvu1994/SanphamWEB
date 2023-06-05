@@ -9,15 +9,9 @@ var corsOptions = {
   origin: "https://anthanhphu.com.vn",
   credentials: true
 }
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://anthanhphu.com.vn');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  next();
-});
-const certificatePath = "/ssl/certs/anthanhphu_com_vn_c5a54_69415_1693267199_b046082d5e7cde4670704063c353df27.crt";
-const privateKeyPath = "/ssl/keys/c5a54_69415_eb03f14517a7ac3062aa3fcb34a1a871";
+app.use(cors(corsOptions));
+const certificatePath = "../ssl/certs/anthanhphu_com_vn_c5a54_69415_1693267199_b046082d5e7cde4670704063c353df27.crt";
+const privateKeyPath = "../ssl/keys/c5a54_69415_eb03f14517a7ac3062aa3fcb34a1a871.key";
 
 const privateKey = fs.readFileSync(privateKeyPath, "utf8");
 const certificate = fs.readFileSync(certificatePath, "utf8");
@@ -27,7 +21,7 @@ const options = {
   cert: certificate,
 };
 
-app.use(cors(corsOptions));
+
 
 // parse requests of content-type - application/json
 app.use(express.json());
