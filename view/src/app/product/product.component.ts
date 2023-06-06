@@ -23,7 +23,8 @@ export class ProductComponent implements OnInit {
   public lstCategory  = [{
     name: 'Phân loại ',
     _id: null,
-    level: 2
+    level: 2,
+    is_parent: false
   }];
   public isCreateProd = false;
   public isEditProd = false;
@@ -42,7 +43,8 @@ export class ProductComponent implements OnInit {
         this.lstCategory = [...[
           {name: 'Phân loại ',
           _id: null,
-          level: 2}],
+          level: 2,
+          is_parent: false}],
           ...data];
 
        console.log(data);
@@ -109,4 +111,14 @@ export class ProductComponent implements OnInit {
     this.Product = item
     this.isEditProd = true;
   }
+
+  changePage(event: any) {
+    this.pageIndex = event;
+    this.GetList()
+   }
+   changePageSize(event: any){
+    this.pageSize = event;
+    this,this.pageSize = 1;
+    this.GetList();
+   }
 }

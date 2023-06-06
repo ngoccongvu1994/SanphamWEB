@@ -1,0 +1,27 @@
+<div class="widget-tittle" style="margin-top: 20px;">
+  <span>Sản phẩm</span>
+</div>
+<div class="widget-content">
+  <div *ngFor="let item of lstCategory | filterLevel : 1">
+    <ul class="menu-ul" id="accordion">
+      <li id="headingOne" [ngClass]="{'has-child': item.listMenu.length > 0 }">
+        <a *ngIf="item.is_parent" data-toggle="collapse" [attr.data-target]="'#collapseOne'+ item._id" aria-expanded="true"
+          [attr.aria-controls]="'collapseOne'+ item._id" >
+          <span  style="cursor: pointer;">{{item.name}}</span>
+        </a>
+        <a *ngIf="!item.is_parent" data-toggle="collapse" [attr.data-target]="'#collapseOne'+ item._id" aria-expanded="true"
+          [attr.aria-controls]="'collapseOne'+ item._id" >
+          <span  [routerLink]="['/sanpham/' , item.code]" style="cursor: pointer;">{{item.name}}</span>
+        </a>
+        <ul class="menu-sub" *ngFor="let x of item.listMenu">
+          <li [id]="'collapseOne'+ x.parent_id" class="collapse" aria-labelledby="headingOne"
+          data-parent="#accordion">
+            <a>
+             <span [routerLink]="['/sanpham/' , x.code]" style="cursor: pointer;"> {{x.name}}</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>

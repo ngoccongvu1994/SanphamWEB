@@ -10,6 +10,7 @@ exports.post =  (req, res) => {
     const filePath = req.file;
     const  product = new Product ({
       name : req.body.name,
+      code : req.body.code,
       description: req.body.description,
       category_id: req.body.category,
       active: true,
@@ -53,6 +54,7 @@ exports.getAll = (req, res) => {
         return {
         _id: item._id,
         name: item.name,
+        code: item.code,
         description: item.description,
         active: item.active,
         createDate: item.createDate,
@@ -62,7 +64,6 @@ exports.getAll = (req, res) => {
         }
     })
    )
-  console.log(codeProd)
     res.send({
       tutorials: codeProd? result.filter( x => x.category.code === codeProd) : result,
       totalItem: result.length,
@@ -75,7 +76,7 @@ exports.getAll = (req, res) => {
 }
 exports.deleteById = (req,res) => {
   Product.deleteOne({_id : req.body._id}, (err)=> {
-    console.log(req.body)
+    // console.log(req.body)
     if(err) {
       res.status(500).send({ message: err });
       return;
@@ -86,6 +87,7 @@ exports.deleteById = (req,res) => {
 exports.update = (req,res) => {
   const updateObject  = {
     name : req.body.data.name,
+    code : req.body.data.code,
     description: req.body.data.description,
     active: req.body.data.active,
     category_id: req.body.data.category_id,
@@ -98,5 +100,15 @@ exports.update = (req,res) => {
       return;
     }
     res.send({ message: "Category was update successfully!"})
+  })
+}
+exports.get = (req,res) => {
+  console.log(req.params)
+  Product.findOne({code : req.params.id} , (err, data) => {
+    if(err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+    res.send(data)
   })
 }

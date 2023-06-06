@@ -14,10 +14,12 @@ import {IntroduceComponent} from './introduce/introduce.component'
 import {LstProductComponent} from './lst-product/lst-product.component'
 import {ContactComponent} from './contact/contact.component'
 import {CategoryProdComponent} from './category-prod/category-prod.component'
+import {DetailProdComponent} from './detail-prod/detail-prod.component'
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'gioithieu', component: IntroduceComponent },
   { path: 'sanpham/:code', component: LstProductComponent},
+  { path: 'sanpham/:code/:id', component: DetailProdComponent},
   { path: 'tintuc', component: NewsComponent },
   { path: 'lienhe', component: ContactComponent },
   { path: 'login', component: LoginComponent },

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { CategoryProductModel } from '../_model/product/category_product.model';
 
 
-const AUTH_API = 'https://anthanhphu.com.vn:8080/api/category/';
+const AUTH_API = 'https://anthanhphu.com.vn:3000/api/category/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

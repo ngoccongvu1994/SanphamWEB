@@ -29,4 +29,6 @@ module.exports = function(app) {
   app.delete("/api/product/deleteByCode/:id", controller.deleteById);
 
   app.put("/api/product/update/:id", controller.update);
+
+  app.get("/api/product/get/:id", controller.get);
 };

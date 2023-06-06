@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { ProductModel } from '../_model/product/product.model';
 
 
-const AUTH_API = 'https://anthanhphu.com.vn:8080/api/product/';
+const AUTH_API = 'https://anthanhphu.com.vn:3000/api/product/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -22,6 +22,7 @@ export class ProductService {
     const formData: FormData = new FormData () ;
     formData.append('image',FileImage)
     formData.append('name',productModel.name)
+    formData.append('code',productModel.code)
     formData.append('description',productModel.description)
     formData.append('category',productModel.category_id)
     return this.http.post(
@@ -37,6 +38,9 @@ export class ProductService {
      }
     });
     return this.http.get(AUTH_API + 'getAll', {params: httpParams} );
+  }
+  get(id: string): Observable<any> {
+    return this.http.get(AUTH_API + 'get/' + id );
   }
   deleteByCode(id: string): Observable<any> {
     httpOptions.body = {_id: id}

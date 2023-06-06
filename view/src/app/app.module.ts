@@ -29,6 +29,7 @@ import { DetailProdComponent } from './detail-prod/detail-prod.component';
 import { CategoryProdComponent } from './category-prod/category-prod.component';
 import { filterLevelPipe } from './pipe/filter-level.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ContentRightComponent } from './main-menu/content-right.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ContactComponent,
     DetailProdComponent,
     CategoryProdComponent,
-    filterLevelPipe
+    filterLevelPipe,
+    ContentRightComponent
   ],
   imports: [
     BrowserModule,

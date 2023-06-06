@@ -22,7 +22,7 @@ exports.post = (req, res) => {
       res.status(500).send({ message: err });
       return;
     }
-    console.log(data)
+    // console.log(data)
     res.send(data);
  })
 }

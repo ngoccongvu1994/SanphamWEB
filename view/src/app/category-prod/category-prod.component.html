@@ -25,7 +25,7 @@
       <div class="form-group">
         <label for="category">Phân loại:</label>
         <select class="form-control" [(ngModel)]="Category.parent_id" name="parent">
-          <option *ngFor="let item of lstCategory | filterLevel" [ngValue]="item._id">
+          <option *ngFor="let item of lstCategory | filterLevel : 1" [ngValue]="item._id">
             <span style="font-size: 12pt;">{{item.name}}</span>
           </option>
         </select>
@@ -41,7 +41,7 @@
     </form>
   </div>
   <div class="col-md-8">
-    <div  *ngFor="let item of lstCategory | filterLevel : 1" >
+    <div  *ngFor="let item of lstCategory | filterLevel : 1 " >
       <div class="card" id="accordion">
         <div class="card-header" id="headingOne">
           <h5 class="mb-0">

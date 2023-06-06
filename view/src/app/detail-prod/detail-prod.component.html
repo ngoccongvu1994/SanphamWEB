@@ -1,1 +1,25 @@
-<p>detail-prod works!</p>
+<app-header></app-header>
+<app-main-menu></app-main-menu>
+<div class="wrap">
+  <img src="/assets/images/cover.jpg" alt="">
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-9" style="margin-top:50px">
+      <h4>{{Prod.name}}</h4>
+      <span>Đăng: <i>Quản trị viên</i></span>
+      <div>
+        <img class="card-img-top" width="200" height="500" src="/assets/images/product4.png" alt="Product 1">
+      </div>
+      <div class="post-content">
+        <p>{{Prod.description}}</p> <br>
+        <span>Tags: {{Prod.name}}</span>
+      </div>
+    </div>
+    <div class="col-3 widget">
+      <app-content-right></app-content-right>
+    </div>
+  </div>
+</div>
+<app-footer>
+</app-footer>

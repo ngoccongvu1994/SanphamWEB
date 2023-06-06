@@ -32,7 +32,8 @@ exports.post = (req, res) => {
         description: item.description,
         code: item.code,
         level: item.level,
-        listMenu: docs
+        listMenu: docs,
+        is_parent : (item.level === 1 && docs.length > 0 && item.parent_id === '')? true : false
         }
     })
    )

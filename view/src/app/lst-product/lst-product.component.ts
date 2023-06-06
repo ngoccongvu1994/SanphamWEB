@@ -4,6 +4,7 @@ import { ProductService } from '../_services/product.service';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryProdService } from '../_services/category-prod.service';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-lst-product',
   templateUrl: './lst-product.component.html',
@@ -17,24 +18,25 @@ export class LstProductComponent {
     private route: ActivatedRoute,
  ) {
  }
+   subscription: Subscription;
    public lstProduct :any;
    public totalItems: any;
    public pageIndex = 1;
    public lstCategory : any;
    public codeProd = '';
- ngOnInit(){
-  this.route.params.subscribe(params => {
-    this.codeProd = this.route.snapshot.params['code'];;
-    console.log(this.codeProd);
-    this.loadProd();
+async ngOnInit(){
+  this.subscription = this.route.params.subscribe(params => {
+    this.codeProd = this.route.snapshot.params['code'];
+    this.loadProd(this.codeProd);
   });
-  this.loadProd();
-  this.loadCategory();
  }
- async loadProd() {
+ ngOnDestroy() {
+  this.subscription.unsubscribe();
+}
+ async loadProd(codeProd: string) {
     await this.svProduct.getAll({
       name: '',
-      code: this.codeProd,
+      code: codeProd,
       category_id: '',
       pageSize: 20,
       pageIndex: this.pageIndex
@@ -45,13 +47,9 @@ export class LstProductComponent {
     }
    });
  }
- async loadCategory(){
-  await this.svCategory.getAll().subscribe({
-    next: data => {
-      this.lstCategory = data;
-      this.toast.success('load category success full');
-     console.log(data);
-    }
-  });
-}
+ changePage(event: any) {
+  this.pageIndex = event;
+  this.loadProd(this.codeProd)
+ }
+
 }

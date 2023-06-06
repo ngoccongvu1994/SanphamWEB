@@ -14,7 +14,7 @@
       <input type="text" class="form-control" placeholder="tìm kiếm" [(ngModel)]="strSearch">
     </div>
      <div class="col-2">
-      <select class="form-control" (change)="GetList()" [(ngModel)]="strCategory" name="parent" placeholder="Phân loại">
+      <select class="form-control" (change)="changePageSize($event)" [(ngModel)]="strCategory" name="parent" placeholder="Phân loại">
           <option *ngFor="let item of lstCategory " [ngValue]="item._id">
             <span style="font-size: 12pt;">{{item.name}}</span>
           </option>
@@ -34,7 +34,8 @@
             <td class="text-center"width="5%">STT</td>
             <td class="text-center"width="15%">#</td>
             <td class="text-center"width="15%">Tên sản phẩm</td>
-            <td class="text-center"width="20%">Mô tả</td>
+            <td class="text-center"width="5%">Mã</td>
+            <td class="text-center"width="15%">Mô tả</td>
             <td class="text-center"width="10%">Phân loại</td>
             <td class="text-center"width="10%">Ngày tạo</td>
             <td class="text-center"width="10%">Ngày sửa</td>
@@ -43,12 +44,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of lstProduct | paginate: { itemsPerPage: pageSize, currentPage: pageIndex , totalItems: totalItems }; let i = index">
+        <tr *ngFor="let item of lstProduct | paginate: { itemsPerPage: 5, currentPage: pageIndex , totalItems: totalItems }; let i = index">
             <td class="text-center">{{i+1}}</td>
             <td class="text-center">
               <img src="/assets/images/product3.jpeg" alt="" width="70" height="70">
             </td>
             <td class="text-center">{{item.name}}</td>
+            <td class="text-center">{{item.code}}</td>
             <td class="text-center">{{item.description}}</td>
             <td class="text-center">{{item.category.name}}</td>
             <td class="text-center">{{item.createDate | date: 'dd/mm/yyyy'}}</td>
@@ -65,7 +67,7 @@
     </table>
     <div class="pagination">
       <pagination-controls class="float-right"
-      (pageChange)="pageIndex = $event"
+      (pageChange)="changePage($event)"
       [maxSize]="5"
       [autoHide]="false"
       previousLabel="Prev"
@@ -81,13 +83,17 @@
         <input type="text" class="form-control" id="name" name="name" [(ngModel)]="Product.name" required>
       </div>
       <div class="form-group">
+        <label for="name">Mã:</label>
+        <input type="text" class="form-control" id="code" name="code" [(ngModel)]="Product.code" required>
+      </div>
+      <div class="form-group">
         <label for="description">Mô tả:</label>
         <textarea class="form-control" id="description" name="description" [(ngModel)]="Product.description"></textarea>
       </div>
       <div class="form-group">
         <label for="category">Phân loại:</label>
         <select class="form-control" [(ngModel)]="Product.category_id" name="parent">
-          <option *ngFor="let item of lstCategory " [ngValue]="item._id">
+          <option *ngFor="let item of lstCategory | filterLevel : 0 : false" [ngValue]="item._id">
             <span style="font-size: 12pt;">{{item.name}}</span>
           </option>
         </select>
