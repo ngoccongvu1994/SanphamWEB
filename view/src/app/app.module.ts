@@ -28,8 +28,10 @@ import { ContactComponent } from './contact/contact.component';
 import { DetailProdComponent } from './detail-prod/detail-prod.component';
 import { CategoryProdComponent } from './category-prod/category-prod.component';
 import { filterLevelPipe } from './pipe/filter-level.pipe';
+import { safeHtmlPipe } from './pipe/safe-html.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ContentRightComponent } from './main-menu/content-right.component';
+import { NgxEditorModule } from 'ngx-editor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +53,8 @@ import { ContentRightComponent } from './main-menu/content-right.component';
     DetailProdComponent,
     CategoryProdComponent,
     filterLevelPipe,
-    ContentRightComponent
+    ContentRightComponent,
+    safeHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { ContentRightComponent } from './main-menu/content-right.component';
     NgbCarouselModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxEditorModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
