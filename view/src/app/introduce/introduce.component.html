@@ -5,19 +5,14 @@
 </div>
 <div class="container">
       <div class="content">
-      <p style="text-align: center">
-        <strong>Thư giới thiệu</strong>
-      </p>
-      <p>Quý khách hàng thân mến</p>
-      <p>Quý khách hàng thân mến</p>
-      <p>Quý khách hàng thân mến</p>
-      <p>Quý khách hàng thân mến</p>
-      <p>Quý khách hàng thân mến</p>
-      <p>Quý khách hàng thân mến</p>
-      <p>Quý khách hàng thân mến</p>
-      <p>Quý khách hàng thân mến</p>
-      <p>Quý khách hàng thân mến</p>
-      </div>
+        <h2 style="text-align: center">
+         <strong>Thư giới thiệu</strong>
+        </h2>
+        <ng-container *ngFor="let item of lstIntro">
+          <h3>{{item.title}}</h3>
+          <div class="content" [innerHTML]="item.content | safeHtml"></div>
+        </ng-container>
+    </div>
 </div>
   <app-footer>
 </app-footer>

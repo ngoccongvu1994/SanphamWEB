@@ -28,7 +28,9 @@ import { ContactComponent } from './contact/contact.component';
 import { DetailProdComponent } from './detail-prod/detail-prod.component';
 import { CategoryProdComponent } from './category-prod/category-prod.component';
 import { filterLevelPipe } from './pipe/filter-level.pipe';
+import { safeHtmlPipe } from './pipe/safe-html.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxEditorModule } from 'ngx-editor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ContactComponent,
     DetailProdComponent,
     CategoryProdComponent,
-    filterLevelPipe
+    filterLevelPipe,
+    safeHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgbCarouselModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxEditorModule
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]

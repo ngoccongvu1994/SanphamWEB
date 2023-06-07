@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../_services/user.service';
-
+import { Editor } from 'ngx-editor';
+import { ToastrService } from 'ngx-toastr';
+import { IntroduceModel } from '../_model/introduce.model';
+import { IntroduceService } from '../_services/introduce.service';
 @Component({
   selector: 'app-board-moderator',
   templateUrl: './board-moderator.component.html',
@@ -8,26 +10,72 @@ import { UserService } from '../_services/user.service';
 })
 export class BoardModeratorComponent implements OnInit {
   content?: string;
-
-  constructor(private userService: UserService) { }
-
+  public editor: Editor;
+  html: '';
+  constructor(
+    public svIntro : IntroduceService,
+    private toast : ToastrService,
+  ) {
+      this.Intro = {
+      title: '',
+      _id : '',
+      content: '',
+      active: true
+    }
+  }
+  public IsEdit = false;
+  public lstIntro : any;
+  public Intro : any;
   ngOnInit(): void {
-    this.userService.getModeratorBoard().subscribe({
+    this.editor = new Editor();
+    this.loadIntro();
+  }
+    ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+  async loadIntro(){
+    await this.svIntro.getAll().subscribe({
       next: data => {
-        this.content = data;
-      },
-      error: err => {
-        if (err.error) {
-          try {
-            const res = JSON.parse(err.error);
-            this.content = res.message;
-          } catch {
-            this.content = `Error with status: ${err.status} - ${err.statusText}`;
-          }
-        } else {
-          this.content = `Error with status: ${err.status}`;
-        }
+        this.lstIntro = data;
       }
     });
+  }
+  addNew(){
+    this.IsEdit = true;
+    this.Intro = {
+      title: '',
+      _id : '',
+      content: '',
+      active: true
+    }
+  }
+  async creatOrUpdateInfo(item: any){
+    this.Intro = item;
+    if(item._id){
+      await this.svIntro.update(this.Intro).subscribe({
+      next: data => {
+         this.toast.success('cập nhật thành công ');
+         this.IsEdit = false;
+      }
+     });
+    } else {
+      await this.svIntro.post(this.Intro).subscribe({
+      next: data => {
+         this.toast.success('Khởi tạo thành công');
+         this.loadIntro();
+      }
+     });
+    }
+  }
+  delete(id:string){
+    this.svIntro.delete(id).subscribe({
+      next: data => {
+        this.loadIntro();
+      }
+    })
+  }
+  editItem (item:any){
+    this.IsEdit = true;
+    this.Intro = item
   }
 }

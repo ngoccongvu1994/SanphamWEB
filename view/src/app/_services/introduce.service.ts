@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { InfoModel } from '../_model/infoContact.model';
+import { IntroduceModel } from '../_model/introduce.model';
 
 
 
-const AUTH_API = 'http://localhost:8080/api/info/';
+const AUTH_API = 'http://localhost:8080/api/introduce/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -15,13 +15,13 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class InfoService {
+export class IntroduceService {
 
   constructor(private http: HttpClient) { }
 
-  post(InfoModel: InfoModel): Observable<any> {
+  post(IntroModel: IntroduceModel): Observable<any> {
     return this.http.post(
-      AUTH_API + 'post', InfoModel,
+      AUTH_API + 'post', IntroModel,
       httpOptions
     );
   }
@@ -34,7 +34,7 @@ export class InfoService {
       AUTH_API + 'delete/' + id, httpOptions
     )
   }
-  update(data: InfoModel) :Observable<any>{
+  update(data: IntroduceModel) :Observable<any>{
     return this.http.put(
       AUTH_API + 'update/' + data._id , {data}
     )

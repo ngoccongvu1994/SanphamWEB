@@ -1,5 +1,48 @@
-<div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+<div class="row">
+  <h3>Thông tin giới thiệu </h3>
 </div>
+<div class="row" *ngIf="!IsEdit">
+  <table class="table" width="100%">
+    <thead>
+      <tr>
+        <th width="20%"> Tiêu đề </th>
+        <th width="70%"> Thông tin  </th>
+        <th width="10%"> <button class="btn btn-sm btn-primary" (click)="addNew()"><i class="fa fa-plus"> Thêm mới</i></button>  </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of lstIntro">
+        <td> <p>{{item.title}}</p>
+        <td>
+          <div class="content" [innerHTML]="item.content | safeHtml"></div>
+        </td>
+        <td >
+          <button class="btn btn-sm btn-info" (click)="editItem(item)">
+            <i class="fa fa-edit"> Sửa</i>
+          </button>
+          <button class="btn btn-sm btn-danger" (click)="delete(item._id)">
+            <i class="fa fa-trash"> Xoá</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row" *ngIf="IsEdit">
+  <div class="col-10">
+    <input type="text" class="form-control" [(ngModel)]="Intro.title">
+  </div>
+  <div class="col-2">
+    <button class="btn btn-sm btn-warning" (click)="IsEdit = false"><i class="fa fa-right"> Thoát</i></button>
+  </div>
+  <div class="NgxEditor__Wrapper col-11" style="margin-left: 20px;margin-top: 20px;">
+    <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+    <ngx-editor [editor]="editor" [(ngModel)]="Intro.content" [placeholder]="'Type here...'"></ngx-editor>
+  </div>
+  <div class="col-12" style="margin-top:20px">
+    <button class="btn btn-sm btn-info" (click)="creatOrUpdateInfo(Intro)">
+      <i class="fa fa-check">Lưu</i>
+    </button>
+  </div>
+</div>
+

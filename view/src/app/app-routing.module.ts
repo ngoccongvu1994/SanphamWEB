@@ -47,7 +47,14 @@ const routes: Routes = [
         breadcrumb:'Thông tin tài khoản ',
         link:'admin/cateProduct'
       }
-    },
+    },{
+      path:'introduce',
+      component: BoardModeratorComponent,
+      data:{
+        breadcrumb:'Thông tin giới thiệu ',
+        link:'admin/introduce'
+      }
+    }
   ]}
 ];
 
