@@ -1,9 +1,9 @@
 <!-- navbar -->
-<nav class="navbar navbar-expand-md  navbar-light">
+<!-- <nav class="navbar navbar-expand-md  navbar-light">
   <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse " id="myNavbar">
+  <div class="collapse navbar-collapse " id="myNavbar"> -->
     <div class="container-fluid">
       <div class="row">
         <!-- sidebar navbar -->
@@ -34,8 +34,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link text-light p-3 mb-2 sidebar-link"> <i
-                  class="fa fa-table text-light fa-lg mr-3" aria-hidden="true"></i> Analytics
+              <a [routerLink]="['/admin/news']" routerLinkActive="current"
+                [routerLinkActiveOptions]="{exact: true}" class="nav-link text-light p-3 mb-2 sidebar-link"> <i
+                  class="fa fa-table text-light fa-lg mr-3" aria-hidden="true"></i> Tin tức
               </a>
             </li>
             <li class="nav-item">
@@ -62,35 +63,13 @@
         </div>
         <!-- end sidebar -->
         <!--  top nav-->
-        <div class="col-lg-9 col-xl-10 col-md-8 ml-auto fixed-top py-2 ">
+        <div class="col-lg-9 col-xl-10 col-md-8 ml-auto py-2 ">
           <div class="row align-items-center">
             <div class="col-md-4">
-              <ul class="navbar-nav mr-auto" routerLinkActive="active">
-                <li class="nav-item">
-                  <a href="/home" class="nav-link" routerLink="home"><b>Trang chủ </b></a>
-                </li>
-                <li class="nav-item">
-                  <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user"><b>User</b></a>
-                </li>
-              </ul>
             </div>
             <div class="col-md-2 offset-6">
-              <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-                <li class="nav-item">
-                  <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                  <a href="/login" class="nav-link" routerLink="login">Login</a>
-                </li>
-              </ul>
-              <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-                <li class="nav-item">
-                  <a href="/profile" class="nav-link" routerLink="profile"><b>{{ username }}</b></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" (click)="logout()"><b>LogOut</b></a>
-                </li>
-              </ul>
+                <button class="btn btn-md btn-info"  (click)="logout()" type="button">Đăng xuất
+                </button>
             </div>
           </div>
           <div class="main-content">
@@ -102,5 +81,5 @@
         <!-- end nav -->
       </div>
     </div>
-  </div>
-</nav>
+  <!-- </div>
+</nav> -->

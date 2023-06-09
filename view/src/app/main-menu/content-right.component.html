@@ -25,3 +25,23 @@
     </ul>
   </div>
 </div>
+<div class="widget-tittle">
+  <span>Tin tức</span>
+</div>
+<div class="widget-content">
+    <table class="menu-ul" style="font-size: 14px;">
+     <tr class="body-tr" *ngFor="let news of lstNews; let last = last"  [ngClass]="{'border-last': last }">
+      <td>
+          <div style="width: 72px;max-height: 72px;">
+             <img src="/assets/images/product3.jpeg" alt="" width="72" height="72">
+           </div>
+      </td>
+      <td>
+          <div style="padding-left: 10px;">
+            <span>{{news.title}}</span> <br>
+             <span style="color:grey">{{news.createDate | date: 'dd-MM-yyyy'}}</span>
+        </div>
+      </td>
+     </tr>
+    </table>
+</div>

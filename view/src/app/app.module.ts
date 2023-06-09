@@ -32,6 +32,7 @@ import { safeHtmlPipe } from './pipe/safe-html.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ContentRightComponent } from './main-menu/content-right.component';
 import { NgxEditorModule } from 'ngx-editor';
+import { BoardNewsComponent } from './board-news/board-news.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import { NgxEditorModule } from 'ngx-editor';
     CategoryProdComponent,
     filterLevelPipe,
     ContentRightComponent,
-    safeHtmlPipe
+    safeHtmlPipe,
+    BoardNewsComponent
   ],
   imports: [
     BrowserModule,

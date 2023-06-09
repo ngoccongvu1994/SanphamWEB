@@ -15,6 +15,7 @@ import {LstProductComponent} from './lst-product/lst-product.component'
 import {ContactComponent} from './contact/contact.component'
 import {CategoryProdComponent} from './category-prod/category-prod.component'
 import {DetailProdComponent} from './detail-prod/detail-prod.component'
+import { BoardNewsComponent } from './board-news/board-news.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'gioithieu', component: IntroduceComponent },
@@ -55,6 +56,14 @@ const routes: Routes = [
       data:{
         breadcrumb:'Thông tin giới thiệu ',
         link:'admin/introduce'
+      }
+    },
+    {
+      path:'news',
+      component: BoardNewsComponent,
+      data:{
+        breadcrumb:'Quản lý tin tức ',
+        link:'admin/news'
       }
     }
   ]}

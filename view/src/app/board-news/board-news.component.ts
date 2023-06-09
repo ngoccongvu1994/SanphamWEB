@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Editor, Toolbar } from 'ngx-editor';
 import { ToastrService } from 'ngx-toastr';
-import { IntroduceModel } from '../_model/introduce.model';
-import { IntroduceService } from '../_services/introduce.service';
+import { NewsService } from '../_services/news.service';
+
 @Component({
-  selector: 'app-board-moderator',
-  templateUrl: './board-moderator.component.html',
-  styleUrls: ['./board-moderator.component.css']
+  selector: 'app-board-news',
+  templateUrl: './board-news.component.html',
+  styleUrls: ['./board-news.component.css']
 })
-export class BoardModeratorComponent implements OnInit {
+export class BoardNewsComponent implements OnInit {
+
   content?: string;
   public editor: Editor;
   public toolbar: Toolbar = [
@@ -23,10 +24,10 @@ export class BoardModeratorComponent implements OnInit {
   ];
   html: '';
   constructor(
-    public svIntro : IntroduceService,
+    public svNews : NewsService,
     private toast : ToastrService,
   ) {
-      this.Intro = {
+      this.News = {
       title: '',
       _id : '',
       content: '',
@@ -34,25 +35,25 @@ export class BoardModeratorComponent implements OnInit {
     }
   }
   public IsEdit = false;
-  public lstIntro : any;
-  public Intro : any;
+  public lstNews : any;
+  public News : any;
   ngOnInit(): void {
     this.editor = new Editor();
-    this.loadIntro();
+    this.loadNews();
   }
     ngOnDestroy(): void {
     this.editor.destroy();
   }
-  async loadIntro(){
-    await this.svIntro.getAll().subscribe({
+  async loadNews(){
+    await this.svNews.getAll().subscribe({
       next: data => {
-        this.lstIntro = data;
+        this.lstNews = data;
       }
     });
   }
   addNew(){
     this.IsEdit = true;
-    this.Intro = {
+    this.News = {
       title: '',
       _id : '',
       content: '',
@@ -60,32 +61,32 @@ export class BoardModeratorComponent implements OnInit {
     }
   }
   async creatOrUpdateInfo(item: any){
-    this.Intro = item;
+    this.News = item;
     if(item._id){
-      await this.svIntro.update(this.Intro).subscribe({
+      await this.svNews.update(this.News).subscribe({
       next: data => {
          this.toast.success('cập nhật thành công ');
          this.IsEdit = false;
       }
      });
     } else {
-      await this.svIntro.post(this.Intro).subscribe({
+      await this.svNews.post(this.News).subscribe({
       next: data => {
          this.toast.success('Khởi tạo thành công');
-         this.loadIntro();
+         this.loadNews();
       }
      });
     }
   }
   delete(id:string){
-    this.svIntro.delete(id).subscribe({
+    this.svNews.delete(id).subscribe({
       next: data => {
-        this.loadIntro();
+        this.loadNews();
       }
     })
   }
   editItem (item:any){
     this.IsEdit = true;
-    this.Intro = item
+    this.News = item
   }
 }

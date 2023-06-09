@@ -5,7 +5,7 @@ import { InfoModel } from '../_model/infoContact.model';
 
 
 
-const AUTH_API = 'http://localhost:8080/api/info/';
+const AUTH_API = 'http://localhost:8080/api/news/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -15,7 +15,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class InfoService {
+export class NewsService {
 
   constructor(private http: HttpClient) { }
 

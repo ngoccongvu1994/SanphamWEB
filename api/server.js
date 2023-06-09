@@ -61,6 +61,7 @@ require("./app/routes/product.routes")(app);
 require("./app/routes/categoryProd.routes")(app);
 require("./app/routes/info.router")(app);
 require("./app/routes/introduce.routes")(app);
+require("./app/routes/news.routes")(app);
 // 
 const server = http.createServer(app);
 

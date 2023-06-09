@@ -48,3 +48,10 @@
   list-style-type: none;
     padding: 0px;
 }
+.body-tr{
+  border-bottom: 1px solid black;
+  padding: 16px 0px;
+}
+.border-last {
+  border-bottom: none;
+}
