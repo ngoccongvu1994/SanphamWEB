@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CategoryProdService } from '../_services/category-prod.service';
@@ -10,6 +10,7 @@ import { NewsService } from '../_services/news.service';
   styleUrls: ['./content-right.component.css']
 })
 export class ContentRightComponent {
+  @Input('lstNews') lstNews: any;
   constructor (
     private toast : ToastrService,
     private svCategory: CategoryProdService,
@@ -19,10 +20,8 @@ export class ContentRightComponent {
    public Prod: any;
    public lstCategory : any;
    public codeProd = '';
-  public lstNews : any;
  ngOnInit(){
   this.loadCategory();
-  this.loadNews();
  }
  async loadCategory(){
   await this.svCategory.getAll().subscribe({
@@ -33,11 +32,4 @@ export class ContentRightComponent {
     }
   });
 }
-  async loadNews(){
-    await this.svNews.getAll().subscribe({
-      next: data => {
-        this.lstNews = data;
-      }
-    });
-  }
 }

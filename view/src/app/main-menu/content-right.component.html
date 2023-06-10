@@ -13,14 +13,14 @@
           [attr.aria-controls]="'collapseOne'+ item._id" >
           <span  [routerLink]="['/sanpham/' , item.code]" style="cursor: pointer;">{{item.name}}</span>
         </a>
-        <ul class="menu-sub" *ngFor="let x of item.listMenu">
-          <li [id]="'collapseOne'+ x.parent_id" class="collapse" aria-labelledby="headingOne"
-          data-parent="#accordion">
-            <a>
-             <span [routerLink]="['/sanpham/' , x.code]" style="cursor: pointer;"> {{x.name}}</span>
-            </a>
-          </li>
-        </ul>
+          <ul class="menu-sub" *ngFor="let x of item.listMenu">
+            <li [id]="'collapseOne'+ x.parent_id" class="collapse" aria-labelledby="headingOne"
+            data-parent="#accordion">
+              <a>
+               <span [routerLink]="['/sanpham/' , x.code]" style="cursor: pointer;color: grey;font-size: 14px;"> {{x.name}}</span>
+              </a>
+            </li>
+          </ul>
       </li>
     </ul>
   </div>
@@ -30,7 +30,7 @@
 </div>
 <div class="widget-content">
     <table class="menu-ul" style="font-size: 14px;">
-     <tr class="body-tr" *ngFor="let news of lstNews; let last = last"  [ngClass]="{'border-last': last }">
+     <tr class="body-tr" *ngFor="let news of lstNews; let last = last">
       <td>
           <div style="width: 72px;max-height: 72px;">
              <img src="/assets/images/product3.jpeg" alt="" width="72" height="72">

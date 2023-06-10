@@ -1,17 +1,33 @@
 <app-header></app-header>
 <app-main-menu></app-main-menu>
 <div class="wrap">
-   <img src="/assets/images/cover.jpg" alt="">
+  <img src="/assets/images/cover.jpg" alt="">
 </div>
 <div class="container">
-  <div class="row">
-    <div class="col-9">
-
-    </div>
-    <div class="col-3 widget">
-      <app-content-right></app-content-right>
+  <div class="body-data">
+    <div class="row" >
+      <div class="col-9">
+        <div class="row" *ngFor="let news of lstNews">
+          <div class="col-4">
+            <img src="/assets/images/product3.jpeg" alt="" width="250" height="150">
+          </div>
+          <div class="col-8">
+            <div class="">
+              <a [routerLink]="['/sanpham/' + codeProd , news.title.code ]"><h3>{{news.title}}</h3></a>
+              <!-- <span>{{news.title}}</span> <br> -->
+              <span style="color:grey">{{news.createDate | date: 'dd-MM-yyyy'}}</span>
+            </div>
+            <div>
+              <button class="btn btn-default"> Xem thêm </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 widget">
+        <app-content-right [lstNews]="lstNews"></app-content-right>
+      </div>
     </div>
   </div>
 </div>
-  <app-footer>
+<app-footer>
 </app-footer>
