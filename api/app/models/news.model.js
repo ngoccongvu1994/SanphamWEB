@@ -4,6 +4,7 @@ const News = mongoose.model(
   "News",
   new mongoose.Schema({
     title: String,
+    code: String,
     content: String,
     active: Boolean,
     createDate: Date,

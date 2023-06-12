@@ -6,21 +6,24 @@
     <thead>
       <tr>
         <th width="20%"> Tiêu đề </th>
-        <th width="10%"> Ảnh  </th>
-        <th width="60%"> Nội dung  </th>
-        <th width="10%"> <button class="btn btn-sm btn-primary" (click)="addNew()"><i class="fa fa-plus"> Thêm mới</i></button>  </th>
+        <th width="10%"> Ảnh </th>
+        <th width="60%"> Nội dung </th>
+        <th width="10%"> <button class="btn btn-sm btn-primary" (click)="addNew()"><i class="fa fa-plus"> Thêm
+              mới</i></button> </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of lstNews">
-        <td> <p>{{item.title}}</p></td>
-        <td >
-              <img src="/assets/images/product3.jpeg" alt="" width="100" height="100">
-            </td>
+        <td>
+          <p>{{item.title}}</p>
+        </td>
+        <td>
+          <img src="/assets/images/product3.jpeg" alt="" width="100" height="100">
+        </td>
         <td>
           <div class="content" [innerHTML]="item.content | safeHtml"></div>
         </td>
-        <td >
+        <td>
           <button class="btn btn-sm btn-info" (click)="editItem(item)">
             <i class="fa fa-edit"> Sửa</i>
           </button>
@@ -34,11 +37,15 @@
 </div>
 <div class="row" *ngIf="IsEdit">
   <div class="col-10">
-     <span >Tiêu đề : </span>
+    <span>Tiêu đề : </span>
     <input type="text" class="form-control" [(ngModel)]="News.title">
   </div>
   <div class="col-2">
     <button class="btn btn-sm btn-warning" (click)="IsEdit = false"><i class="fa fa-right"> Thoát</i></button>
+  </div>
+  <div class="col-12">
+    <span>Mã : </span>
+    <input type="text" class="form-control" [(ngModel)]="News.code" placeholder="">
   </div>
   <div class="NgxEditor__Wrapper col-10" style="margin-left: 20px;margin-top: 20px;">
     <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
@@ -47,7 +54,7 @@
   </div>
   <div class="col-10" style="margin-top: 20px;">
     <span>Tags: </span>
-    <input type="text" class="form-control"[(ngModel)]="News.tags" [placeholder]="'Tags ... '">
+    <input type="text" class="form-control" [(ngModel)]="News.tags" [placeholder]="'Tags ... '">
   </div>
   <div class="col-12" style="margin-top:20px">
     <button class="btn btn-sm btn-info" (click)="creatOrUpdateInfo(News)">
@@ -55,4 +62,3 @@
     </button>
   </div>
 </div>
-

@@ -7,6 +7,7 @@ exports.post = (req, res) => {
   // const filePath = req.file;
   const  Newss = new News ({
     title : req.body.title,
+    code : req.body.code,
     content: req.body.content,
     active: true,
     createDate: Date.now(),
