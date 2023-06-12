@@ -22,14 +22,22 @@ export class ContentRightComponent {
    public codeProd = '';
  ngOnInit(){
   this.loadCategory();
+  this.loadNews();
  }
- async loadCategory(){
-  await this.svCategory.getAll().subscribe({
-    next: data => {
-      this.lstCategory = data;
-      this.toast.success('load category success full');
-     console.log(data);
-    }
-  });
-}
+  async loadCategory(){
+    await this.svCategory.getAll().subscribe({
+      next: data => {
+        this.lstCategory = data;
+
+      console.log(data);
+      }
+    });
+  }
+async loadNews(){
+    await this.svNews.getAll().subscribe({
+      next: data => {
+        this.lstNews = data;
+      }
+    });
+  }
 }

@@ -33,6 +33,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ContentRightComponent } from './main-menu/content-right.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { BoardNewsComponent } from './board-news/board-news.component';
+import { DetailNewsComponent } from './detail-news/detail-news.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +57,8 @@ import { BoardNewsComponent } from './board-news/board-news.component';
     filterLevelPipe,
     ContentRightComponent,
     safeHtmlPipe,
-    BoardNewsComponent
+    BoardNewsComponent,
+    DetailNewsComponent,
   ],
   imports: [
     BrowserModule,

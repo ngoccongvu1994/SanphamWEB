@@ -36,9 +36,9 @@
              <img src="/assets/images/product3.jpeg" alt="" width="72" height="72">
            </div>
       </td>
-      <td>
+      <td class="text-link">
           <div style="padding-left: 10px;">
-            <span>{{news.title}}</span> <br>
+            <a [routerLink]="['/tintuc/' , news.code ]" >{{news.title}}</a> <br>
              <span style="color:grey">{{news.createDate | date: 'dd-MM-yyyy'}}</span>
         </div>
       </td>

@@ -50,6 +50,7 @@ exports.update = (req,res) => {
     title : req.body.data.title,
     content : req.body.data.content,
     tags: req.body.data.tags,
+    code: req.body.data.code,
     updateDate: Date.now()
   } 
   const ID = req.params.id
@@ -59,5 +60,15 @@ exports.update = (req,res) => {
       return;
     }
     res.send({ message: "Info was update successfully!"})
+  })
+}
+exports.get = (req,res) => {
+  console.log(req.params)
+  News.findOne({code : req.params.id} , (err, data) => {
+    if(err) {
+      res.status(500).send({ message: err });
+      return;
+    }
+    res.send(data)
   })
 }

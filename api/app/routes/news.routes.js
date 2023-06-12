@@ -14,4 +14,6 @@ module.exports = function(app) {
   app.delete("/api/news/delete/:id", controller.delete);
 
   app.put("/api/news/update/:id", controller.update);
+
+  app.get("/api/news/get/:id", controller.get);
 };

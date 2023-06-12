@@ -39,4 +39,7 @@ export class NewsService {
       AUTH_API + 'update/' + data._id , {data}
     )
   }
+  get(id: string): Observable<any> {
+    return this.http.get(AUTH_API + 'get/' + id );
+  }
 }

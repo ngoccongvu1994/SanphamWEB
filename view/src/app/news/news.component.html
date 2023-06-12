@@ -7,21 +7,23 @@
   <div class="body-data">
     <div class="row" >
       <div class="col-9">
-        <div class="row" *ngFor="let news of lstNews">
-          <div class="col-4">
-            <img src="/assets/images/product3.jpeg" alt="" width="250" height="150">
-          </div>
-          <div class="col-8">
-            <div class="">
-              <a href=""><h3>{{news.title}}</h3></a>
-              <!-- <span>{{news.title}}</span> <br> -->
-              <span style="color:grey">{{news.createDate | date: 'dd-MM-yyyy'}}</span>
+        <ng-container  *ngFor="let news of lstNews; let last = last">
+          <div class="row content" [ngClass]="{'last-item': !last}">
+            <div class="col-4">
+              <img src="/assets/images/product3.jpeg" alt="" width="250" height="200">
             </div>
-            <div>
-              <button class="btn btn-default"> Xem thêm </button>
+            <div class="col-8">
+              <div class="text-link">
+                <a [routerLink]="['/tintuc/' , news.code ]"><h4>{{news.title}}</h4></a>
+                <p class="data-text" [innerHTML]="news.content | safeHtml"></p>
+                <span style="color:grey">{{news.createDate | date: 'dd-MM-yyyy'}}</span>
+              </div>
+              <div class="news">
+                <a class="read-more" [routerLink]="['/tintuc/' , news.code ]"> Xem thêm </a>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-container>
       </div>
       <div class="col-3 widget">
         <app-content-right [lstNews]="lstNews"></app-content-right>
