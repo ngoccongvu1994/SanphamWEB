@@ -1,4 +1,4 @@
 module.exports = {
-    pathProduct : "../../../view/uploads"
+    pathProduct : "../../../public_html/uploads"
   };
   

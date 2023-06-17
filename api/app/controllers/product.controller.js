@@ -21,7 +21,7 @@ exports.post =  (req, res) => {
       fs.mkdirSync(filePath.path);
     }
 
-    product.image = filePath.path;
+    product.image =  'uploads/'+ filePath.filename;
     product.save((err)=>{
       if(err){
           res.status(500).send({message: err})
@@ -55,6 +55,7 @@ exports.getAll = (req, res) => {
         _id: item._id,
         name: item.name,
         code: item.code,
+        image: item.image,
         description: item.description,
         active: item.active,
         createDate: item.createDate,

@@ -109,6 +109,7 @@ export class ProductComponent implements OnInit {
   }
   editItem (item:ProductModel){
     this.Product = item
+    this.urlImage = this.Product.image;
     this.isEditProd = true;
   }
 

@@ -5,7 +5,7 @@ import { IntroduceModel } from '../_model/introduce.model';
 
 
 
-const AUTH_API = 'http://localhost:8080/api/introduce/';
+const AUTH_API = 'https://anthanhphu.com.vn/api/introduce/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

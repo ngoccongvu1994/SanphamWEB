@@ -47,7 +47,7 @@
         <tr *ngFor="let item of lstProduct | paginate: { itemsPerPage: 5, currentPage: pageIndex , totalItems: totalItems }; let i = index">
             <td class="text-center">{{i+1}}</td>
             <td class="text-center">
-              <img src="/assets/images/product3.jpeg" alt="" width="70" height="70">
+              <img [src]="item.image" alt="" width="70" height="70">
             </td>
             <td class="text-center">{{item.name}}</td>
             <td class="text-center">{{item.code}}</td>
@@ -110,6 +110,7 @@
     </form>
   </div>
   <div class="col6">
-    <img *ngIf="FileImage" [src]="urlImage" alt="Selected Image" width="400" height="400">
+    <img *ngIf="FileImage && isCreateProd" [src]="urlImage" alt="Selected Image" width="400" height="400">
+    <img *ngIf="isEditProd && !isCreateProd" [src]="urlImage" alt="Selected Image" width="400" height="400">
   </div>
 </div>

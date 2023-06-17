@@ -11,7 +11,7 @@
           *ngFor="let item of lstProduct | paginate: { itemsPerPage: 20, currentPage: pageIndex , totalItems: totalItems }, let i = index">
           <div class="card">
             <a [routerLink]="['/sanpham/' + codeProd , item.code ]">
-              <img class="card-img-top zoom" src="/assets/images/product4.png" alt="Product 1">
+              <img class="card-img-top zoom" [src]="item.image" alt="Product 1">
             </a>
             <div class="card-body">
               <h5 class="card-title">{{item.name}}</h5>
