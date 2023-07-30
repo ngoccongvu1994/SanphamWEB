@@ -37,6 +37,18 @@
           <li class="nav-item dropdown">
             <a class="nav-link" [routerLink]="['/dichvu']" routerLinkActive="current"
               [routerLinkActiveOptions]="{exact: true}">Dịch vụ</a>
+              <div class="dropdown-content">
+                <ul class="navbar-nav sub-menu" *ngFor="let item of lstDichVu | filterLevel : 1">
+                  <li class="nav-item menu-item" style="margin-left: 0px;">
+                      <a class="nav-link" [routerLink]="['/dichvu/' , item.code]">{{item.name}}</a>
+                      <ul class="navbar-nav sub-menu1">
+                        <li class="nav-item menu-item" *ngFor="let x of item.listMenu">
+                          <a class="nav-link" [routerLink]="['/dichvu/' , x.code]">{{x.name}}</a>
+                        </li>
+                      </ul>
+                  </li>
+                </ul>
+              </div>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" [routerLink]="['/tintuc']" routerLinkActive="current"

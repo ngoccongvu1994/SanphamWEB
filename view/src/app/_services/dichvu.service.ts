@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CategoryProductModel } from '../_model/product/category_product.model';
+import { DichVuModel } from '../_model/dichvu.model';
 
 
-const AUTH_API = 'http://localhost:8080/api/category/';
+const AUTH_API = 'http://localhost:8080/api/dichvu/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -14,11 +15,11 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root',
 })
-export class CategoryProdService {
+export class DichVuService {
   constructor(private http: HttpClient) { }
- post(CategoryProductModel: CategoryProductModel): Observable<any> {
+ post(DichVuModel: DichVuModel): Observable<any> {
     return this.http.post(
-      AUTH_API + 'post', CategoryProductModel,
+      AUTH_API + 'post', DichVuModel,
       httpOptions
     );
   }
@@ -31,7 +32,7 @@ export class CategoryProdService {
       AUTH_API + 'deleteByCode/' + code, httpOptions
     )
   }
-  update(data: CategoryProductModel) :Observable<any>{
+  update(data: DichVuModel) :Observable<any>{
     return this.http.put(
       AUTH_API + 'update/' + data._id , {data}
     )

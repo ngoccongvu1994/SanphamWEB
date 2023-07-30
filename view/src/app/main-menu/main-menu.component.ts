@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DichVuModel } from '../_model/dichvu.model';
 import { CategoryProductModel } from '../_model/product/category_product.model';
 import { CategoryProdService } from '../_services/category-prod.service';
+import { DichVuService } from '../_services/dichvu.service';
 
 @Component({
   selector: 'app-main-menu',
@@ -9,13 +11,17 @@ import { CategoryProdService } from '../_services/category-prod.service';
 })
 export class MainMenuComponent implements OnInit{
   public lstMenu: CategoryProductModel[];
+  public lstDichVu: DichVuModel[];
   constructor(
-    private svCategory :CategoryProdService
+    private svCategory :CategoryProdService,
+    private svDichVu :DichVuService
   ){
     this.lstMenu = []
+    this.lstDichVu = []
   }
   ngOnInit(): void {
     this.loadMenu();
+    this.loadDichVu();
   }
 async  loadMenu(){
      await this.svCategory.getAll().subscribe({
@@ -24,4 +30,11 @@ async  loadMenu(){
     }
   });
   }
+  async  loadDichVu(){
+    await this.svDichVu.getAll().subscribe({
+   next: data => {
+     this.lstDichVu = data;
+   }
+ });
+ }
 }

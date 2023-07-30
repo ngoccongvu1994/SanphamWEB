@@ -1,0 +1,33 @@
+<app-header></app-header>
+<app-main-menu></app-main-menu>
+<div class="wrap">
+  <img src="/assets/images/cover.jpg" alt="">
+</div>
+<div class="container">
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-9">
+      <div class="row">
+        <div class="col-md-4" style="margin-top: 20px;"
+          *ngFor="let item of lstProduct | paginate: { itemsPerPage: 20, currentPage: pageIndex , totalItems: totalItems }, let i = index">
+          <div class="card">
+            <a [routerLink]="['/sanpham/' + codeProd , item.code ]">
+              <img class="card-img-top zoom" [src]="item.image" alt="Product 1">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title">{{item.name}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 widget">
+      <app-content-right></app-content-right>
+    </div>
+  </div>
+  <div class="pagination" style="margin-top: 20px;text-align: right;">
+    <pagination-controls class="float-right" (pageChange)="changePage($event)" [maxSize]="5" [autoHide]="false"
+      previousLabel="Prev" nextLabel="Next"></pagination-controls>
+  </div>
+</div>
+<app-footer>
+</app-footer>

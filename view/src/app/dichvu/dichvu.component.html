@@ -1,0 +1,72 @@
+<div class="row">
+  <h3>Danh mục sản phẩm</h3>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <form action="/dichvu" method="POST">
+      <div class="form-group">
+        <label for="name">Tên:</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="DichVu.name" required>
+      </div>
+      <div class="form-group">
+        <label for="description">Mô tả:</label>
+        <textarea class="form-control" id="description" name="description"
+          [(ngModel)]="DichVu.description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="price">Mã:</label>
+        <div class="input-group">
+          <!-- <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div> -->
+          <input type="text" class="form-control" id="price" name="price" [(ngModel)]="DichVu.code" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Phân loại:</label>
+        <select class="form-control" [(ngModel)]="DichVu.parent_id" name="parent">
+          <option *ngFor="let item of lstCategory | filterLevel : 1" [ngValue]="item._id">
+            <span style="font-size: 12pt;">{{item.name}}</span>
+          </option>
+        </select>
+      </div>
+      <!-- <div class="form-group">
+        <label for="image">Cấp:</label>
+        <input type="number" class="form-control" id="image" name="image" step="1" [(ngModel)]="Category.level">
+      </div> -->
+      <div class="form-group">
+        <button *ngIf="!IsEdit"  (click)="createProduct()" type="submit" class="btn btn-primary">Tạo mới</button>
+        <button *ngIf="IsEdit" (click)="updateCate()" type="submit" class="btn btn-primary">Cập nhật</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-8">
+    <div  *ngFor="let item of lstCategory | filterLevel : 1 " >
+      <div class="card" id="accordion">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" [attr.data-target]="'#collapseOne'+ item._id" aria-expanded="true"
+              [attr.aria-controls]="'collapseOne'+ item._id">
+              {{item.name}}
+            </button>
+            <button class="btn btn-danger float-right" (click)="deleteByCode(item.code)"><i
+              class="fa fa-trash"></i></button>
+              <button class="btn btn-warning float-right" (click)="editItem(item)"><i
+                class="fa fa-edit"></i></button>
+          </h5>
+        </div>
+        <ng-container *ngFor="let x of item.listMenu">
+          <div [id]="'collapseOne'+ x.parent_id" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              {{x.name}}
+              <button class="btn btn-danger float-right" (click)="deleteByCode(x.code)"><i
+                class="fa fa-trash"></i></button>
+                <button class="btn btn-warning float-right" (click)="editItem(x)"><i
+                  class="fa fa-edit"></i></button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

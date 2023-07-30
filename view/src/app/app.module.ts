@@ -34,6 +34,8 @@ import { ContentRightComponent } from './main-menu/content-right.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { BoardNewsComponent } from './board-news/board-news.component';
 import { DetailNewsComponent } from './detail-news/detail-news.component';
+import { DichVuComponent } from './dichvu/dichvu.component';
+import { LstDichVuComponent } from './lst-dichvu/lst-dichvu.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,9 +53,11 @@ import { DetailNewsComponent } from './detail-news/detail-news.component';
     HeaderComponent,
     IntroduceComponent,
     LstProductComponent,
+    LstDichVuComponent,
     ContactComponent,
     DetailProdComponent,
     CategoryProdComponent,
+    DichVuComponent,
     filterLevelPipe,
     ContentRightComponent,
     safeHtmlPipe,

@@ -17,6 +17,7 @@ import {CategoryProdComponent} from './category-prod/category-prod.component'
 import {DetailProdComponent} from './detail-prod/detail-prod.component'
 import { BoardNewsComponent } from './board-news/board-news.component';
 import { DetailNewsComponent } from './detail-news/detail-news.component';
+import { DichVuComponent } from './dichvu/dichvu.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'gioithieu', component: IntroduceComponent },
@@ -66,6 +67,14 @@ const routes: Routes = [
       data:{
         breadcrumb:'Quản lý tin tức ',
         link:'admin/news'
+      }
+    },
+    {
+      path:'dichvu',
+      component: DichVuComponent,
+      data:{
+        breadcrumb:'Quản lý dichvu ',
+        link:'admin/dichvu'
       }
     }
   ]}
